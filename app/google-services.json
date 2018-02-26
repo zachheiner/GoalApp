@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "818484470223",
+    "firebase_url": "https://goalapp-b36ba.firebaseio.com",
+    "project_id": "goalapp-b36ba",
+    "storage_bucket": "goalapp-b36ba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818484470223:android:8e6770f02b8e70a5",
+        "android_client_info": {
+          "package_name": "com.example.zachheiner.goalapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "818484470223-mt11s06cimua6nf0c316bg6uru2kqevo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuO1_AFBrBiaMuIs2SGNPkazuXZaDBfDE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
