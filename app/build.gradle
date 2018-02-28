@@ -28,6 +28,27 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:1.10.19'
+    
+        //additional libraries
+    //Realtime database
+    compile 'com.google.firebase:firebase-database:11.8.0'
+    //Storage
+    compile 'com.google.firebase:firebase-storage:11.8.0'
+    //Crash reporting
+    compile 'com.google.firebase:firebase-crash:11.8.0'
+    //Authentication
+    compile 'com.google.firebase:firebase-auth:11.8.0'
+    //Cloud messaging
+    compile 'com.google.firebase:firebase-messaging:11.8.0'
+    //Remote Config
+    compile 'com.google.firebase:firebase-config:11.8.0'
+    //Invites and dynamic links
+    compile 'com.google.firebase:firebase-invites:11.8.0'
+    //App indexing
+    compile 'com.google.firebase:firebase-appindexing:11.8.0'
+    //Performance monitoring
+    compile 'com.google.firebase:firebase-perf:11.8.0'
+
 
 }
 
