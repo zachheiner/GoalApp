@@ -14,16 +14,16 @@ public class DisplayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
         Intent intent = getIntent();
-        String book = intent.getStringExtra(MainActivity.EXTRA_USERNAME);
-        String chapter = intent.getStringExtra(MainActivity.EXTRA_PASSWORD);
+        String username = intent.getStringExtra(MainActivity.EXTRA_USERNAME);
+        String password = intent.getStringExtra(MainActivity.EXTRA_PASSWORD);
 
-        String scripture = "Received intent with " + book + " " + chapter;
-        Log.i(TAG, scripture);
+        String user = "Received intent with " + username + " & their password";
+        Log.i(TAG, user);
 
-        String outputScripture = book + " " + chapter;
+        String outputWelcomeMessage = "Welcome to GoalApp " + username;
 
         TextView DisplayId;
         DisplayId = (TextView) (findViewById(R.id.TextView_Display));
-        DisplayId.setText(outputScripture);
+        DisplayId.setText(outputWelcomeMessage);
     }
 }
