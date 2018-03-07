@@ -13,9 +13,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import static com.example.zachheiner.goalapp.R.id.TextView_usernameField;
-import static com.example.zachheiner.goalapp.R.id.TextView_passwordField;
-
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     
