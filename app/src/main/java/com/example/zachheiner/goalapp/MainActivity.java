@@ -18,7 +18,10 @@ import static com.example.zachheiner.goalapp.R.id.TextView_passwordField;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-
+    
+      // Firebase instance variables
+    private String mUsername;
+    private String mPhotoUrl;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
 
@@ -28,6 +31,11 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference mGoalsDatabaseReference;
     private DatabaseReference mJournalDatabaseReference;
 
+    /**
+     * onCreate
+     * Here our button and event listener are set and initialized for use.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,14 +46,24 @@ public class MainActivity extends AppCompatActivity {
         mGoalsDatabaseReference = mFirebaseDatabase.getReference().child("goal");
         mJournalDatabaseReference = mFirebaseDatabase.getReference().child("journal");
 
-        Button loginButton = (Button) findViewById(R.id.Button_login);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                openLoginActivity();
+        // Initialize Firebase Authentication
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        if (mFirebaseUser == null) {
+            // Not signed in, launch the Sign In activity
+            startActivity(new Intent(this, SignInActivity.class));
+            finish();
+            return;
+        } else {
+            mUsername = mFirebaseUser.getDisplayName();
+            if (mFirebaseUser.getPhotoUrl() != null) {
+                mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
             }
-        });
+        }
+        
     }
+
+  
 
 }
