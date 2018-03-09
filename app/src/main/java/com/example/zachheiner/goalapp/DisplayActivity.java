@@ -28,13 +28,13 @@ public class DisplayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
         Intent intent = getIntent();
-        //String username = intent.getStringExtra(MainActivity.EXTRA_USERNAME);
+        String username = intent.getStringExtra(SignInActivity.EXTRA_USER);
         //String password = intent.getStringExtra(MainActivity.EXTRA_PASSWORD);
 
-        String user = "Received intent with " /*+ username*/ + " & their password";
+        String user = "Received intent with " + username;
         Log.i(TAG, user);
 
-        String outputWelcomeMessage = "Welcome to GoalApp " /*+ username*/;
+        String outputWelcomeMessage = "Welcome to GoalApp " + username;
 
         TextView DisplayId;
         DisplayId = (TextView) (findViewById(R.id.TextView_Display));
