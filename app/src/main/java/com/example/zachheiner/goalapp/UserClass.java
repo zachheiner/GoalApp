@@ -7,6 +7,7 @@ package com.example.zachheiner.goalapp;
 public class UserClass {
     private String userName;
     private String password;
+    private String journal;
 
     public String getUser() {
         return userName;
@@ -16,6 +17,8 @@ public class UserClass {
         return password;
     }
 
+    public String geJournal() { return journal; }
+
     public void setUserName(String userName) {
         this.userName = userName;
     }
@@ -23,4 +26,6 @@ public class UserClass {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public void setJournal(String journal) { this.journal = journal; }
 }
