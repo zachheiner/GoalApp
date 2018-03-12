@@ -118,10 +118,14 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
                 user = mFirebaseAuth.getCurrentUser();
-                String convertedUser = user.getDisplayName();
-                Intent userIntent = new Intent(this, DisplayActivity.class);
-                userIntent.putExtra(EXTRA_USER, convertedUser);
-                startActivity(userIntent);
+                if (user != null) {
+                    String convertedUser = user.getDisplayName();
+                    Intent userIntent = new Intent(this, DisplayActivity.class);
+                    userIntent.putExtra(EXTRA_USER, convertedUser);
+                    startActivity(userIntent);
+                } else {
+
+                }
             } else {
                 // Google Sign-In failed
                 Context context = getApplicationContext();
@@ -159,7 +163,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                             Toast.makeText(SignInActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
-                            startActivity(new Intent(SignInActivity.this, MainActivity.class));
+                            startActivity(new Intent(SignInActivity.this, DisplayActivity.class));
                             finish();
                         }
                     }

@@ -17,8 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SignInActivity"></activity>
-        <activity android:name=".DisplayActivity"
-            android:parentActivityName=".SignInActivity"></activity>
+        <activity android:name=".DisplayActivity"></activity>
 
         <meta-data
             android:name="preloaded_fonts"
