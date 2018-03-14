@@ -120,14 +120,11 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
                 user = mFirebaseAuth.getCurrentUser();
-                if (user != null) {
-                    String mUsername = mFirebaseUser.getDisplayName();
-                    Intent userIntent = new Intent(this, DisplayActivity.class);
-                    userIntent.putExtra(EXTRA_USER, mUsername);
-                    startActivity(userIntent);
-                } else {
-
-                }
+                String mUsername = user.getDisplayName();
+                Log.d(TAG, "This is the username " + user);
+                Intent userIntent = new Intent(this, DisplayActivity.class);
+                userIntent.putExtra(EXTRA_USER, mUsername);
+                startActivity(userIntent);
             } else {
                 // Google Sign-In failed
                 Context context = getApplicationContext();
@@ -211,6 +208,12 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onPause() {
         super.onPause();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
     }
 }

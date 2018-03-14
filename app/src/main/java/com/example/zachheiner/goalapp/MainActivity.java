@@ -60,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(displayIntent);
                 finish();
             }
+            Intent displayIntent = new Intent(this, DisplayActivity.class);
+            displayIntent.putExtra(EXTRA_USER, mUsername);
+            startActivity(displayIntent);
+            finish();
         }
         
     }
