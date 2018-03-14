@@ -33,11 +33,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
  */
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private static final String TAG = "SignInActivity";
-<<<<<<< HEAD
-    private static final String EXTRA_USER = "com.example.zachheiner.goalapp.EXTRA_USER";
-=======
     public static final String EXTRA_USER = "com.example.zachheiner.goalapp.EXTRA_USER";
->>>>>>> master
     private static final int RC_SIGN_IN = 9001;
 
     // Firebase instance variables
@@ -121,14 +117,13 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 // Google Sign-In was successful, authenticate with Firebase
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
-<<<<<<< HEAD
 
                 String username = account.getDisplayName();
                 Intent loginIntent = new Intent(this, DisplayActivity.class);
                 loginIntent.putExtra(EXTRA_USER, username);
                 startActivity(loginIntent);
                 startActivity(loginIntent);
-            } else {
+            } else{
                 // Google Sign-In failed
                 Context context = getApplicationContext();
                 CharSequence text = "Login Failed!";
@@ -136,7 +131,6 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
-=======
                 user = mFirebaseAuth.getCurrentUser();
                 String convertedUser = user.getDisplayName();
                 Intent userIntent = new Intent(this, DisplayActivity.class);
@@ -151,7 +145,6 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
                 Toast failToast = Toast.makeText(context, text, duration);
                 failToast.show();
->>>>>>> master
                 Log.e(TAG, "Google Sign-In failed.");
             }
         }
