@@ -14,7 +14,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
-    //private static final String TAG = "MainActivity";
+    private static final String TAG = "MainActivity";
+    private static final String EXTRA_USER = "com.example.zachheiner.goalapp.EXTRA_USER";
 
     /**
      * onCreate
@@ -44,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
             if (mFirebaseUser.getPhotoUrl() != null) {
                 String mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
             }
+            Intent displayIntent = new Intent(this, DisplayActivity.class);
+            displayIntent.putExtra(EXTRA_USER, mUsername);
+            startActivity(displayIntent);
+            finish();
         }
         
     }
