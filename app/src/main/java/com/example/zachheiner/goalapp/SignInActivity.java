@@ -38,6 +38,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     // Firebase instance variables
     private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
     private GoogleApiClient mGoogleApiClient;
     private SignInButton mSignInButton;
     private FirebaseUser user;
@@ -53,6 +54,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_sign_in);
         // Initialize FirebaseAuth
         mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
         mSignInButton = (SignInButton) findViewById(R.id.sign_in_button);
         mSignInButton.setSize(SignInButton.SIZE_WIDE);
@@ -119,9 +121,9 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 firebaseAuthWithGoogle(account);
                 user = mFirebaseAuth.getCurrentUser();
                 if (user != null) {
-                    String convertedUser = user.getDisplayName();
+                    String mUsername = mFirebaseUser.getDisplayName();
                     Intent userIntent = new Intent(this, DisplayActivity.class);
-                    userIntent.putExtra(EXTRA_USER, convertedUser);
+                    userIntent.putExtra(EXTRA_USER, mUsername);
                     startActivity(userIntent);
                 } else {
 
