@@ -38,6 +38,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     // Firebase instance variables
     private FirebaseAuth mFirebaseAuth;
+    private GoogleSignInAccount account;
     private GoogleApiClient mGoogleApiClient;
     private SignInButton mSignInButton;
     private FirebaseUser user;
@@ -114,18 +115,18 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
                 Log.d(TAG, "Google Sign-In Success.");
-                // Google Sign-In was successful, authenticate with Firebase
-                GoogleSignInAccount account = result.getSignInAccount();
+                // Google Sign-In was successful, authenticated with Firebase
+                account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
-                user = mFirebaseAuth.getCurrentUser();
                 Log.d(TAG, "This is the username " + user);
-                if (user != null) {
-                    String mUsername = user.getDisplayName();
+                if (account != null) {
+                    Log.d(TAG, "user was not considered as null");
+                    String mUsername = account.getDisplayName();
                     Intent userIntent = new Intent(this, DisplayActivity.class);
                     userIntent.putExtra(EXTRA_USER, mUsername);
                     startActivity(userIntent);
                 } else {
-
+                    Log.e(TAG, "User came back as null");
                 }
             } else {
                 // Google Sign-In failed
