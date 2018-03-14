@@ -118,9 +118,9 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 // Google Sign-In was successful, authenticated with Firebase
                 account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
-                Log.d(TAG, "This is the username " + user);
+                Log.d(TAG, "Captured the username");
                 if (account != null) {
-                    Log.d(TAG, "user was not considered as null");
+                    Log.d(TAG, "user is not null");
                     String mUsername = account.getDisplayName();
                     Intent userIntent = new Intent(this, DisplayActivity.class);
                     userIntent.putExtra(EXTRA_USER, mUsername);
