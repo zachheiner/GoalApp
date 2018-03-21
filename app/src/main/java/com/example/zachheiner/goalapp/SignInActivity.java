@@ -39,6 +39,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     // Firebase instance variables
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
+    private GoogleSignInAccount account;
     private GoogleApiClient mGoogleApiClient;
     private SignInButton mSignInButton;
     private FirebaseUser user;
@@ -116,17 +117,21 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
                 Log.d(TAG, "Google Sign-In Success.");
-                // Google Sign-In was successful, authenticate with Firebase
-                GoogleSignInAccount account = result.getSignInAccount();
+                // Google Sign-In was successful, authenticated with Firebase
+                account = result.getSignInAccount();
+                Log.d(TAG, "Captured the username");
                 firebaseAuthWithGoogle(account);
-                user = mFirebaseAuth.getCurrentUser();
-                String mUsername = user.getDisplayName();
-                Log.d(TAG, "This is the username " + user);
-                Intent userIntent = new Intent(this, DisplayActivity.class);
-                userIntent.putExtra(EXTRA_USER, mUsername);
-                startActivity(userIntent);
+                /*if (account != null) {
+                    Log.d(TAG, "user is not null");
+                    String mUsername = account.getDisplayName();
+                    Intent userIntent = new Intent(this, DisplayActivity.class);
+                    userIntent.putExtra(EXTRA_USER, mUsername);
+                    startActivity(userIntent);
+                } else {
+                    Log.e(TAG, "User came back as null");
+                }*/
             } else {
-                // Google Sign-In failed
+                // G5oogle Sign-In failed
                 Context context = getApplicationContext();
                 CharSequence text = "Login Failed";
                 int duration = Toast.LENGTH_SHORT;
@@ -162,8 +167,16 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                             Toast.makeText(SignInActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
-                            startActivity(new Intent(SignInActivity.this, DisplayActivity.class));
+                            if (account != null) {
+                            Log.d(TAG, "user is not null");
+                            String mUsername = account.getDisplayName();
+                            Intent userIntent = new Intent(SignInActivity.this, DisplayActivity.class);
+                            userIntent.putExtra(EXTRA_USER, mUsername);
+                            startActivity(userIntent);
                             finish();
+                        } else {
+                            Log.e(TAG, "User came back as null");
+                        }
                         }
                     }
                 });
