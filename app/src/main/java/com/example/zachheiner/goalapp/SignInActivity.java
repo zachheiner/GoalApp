@@ -117,9 +117,9 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 Log.d(TAG, "Google Sign-In Success.");
                 // Google Sign-In was successful, authenticated with Firebase
                 account = result.getSignInAccount();
-                firebaseAuthWithGoogle(account);
                 Log.d(TAG, "Captured the username");
-                if (account != null) {
+                firebaseAuthWithGoogle(account);
+                /*if (account != null) {
                     Log.d(TAG, "user is not null");
                     String mUsername = account.getDisplayName();
                     Intent userIntent = new Intent(this, DisplayActivity.class);
@@ -127,7 +127,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                     startActivity(userIntent);
                 } else {
                     Log.e(TAG, "User came back as null");
-                }
+                }*/
             } else {
                 // Google Sign-In failed
                 Context context = getApplicationContext();
@@ -165,8 +165,16 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                             Toast.makeText(SignInActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
-                            startActivity(new Intent(SignInActivity.this, DisplayActivity.class));
+                            if (account != null) {
+                            Log.d(TAG, "user is not null");
+                            String mUsername = account.getDisplayName();
+                            Intent userIntent = new Intent(SignInActivity.this, DisplayActivity.class);
+                            userIntent.putExtra(EXTRA_USER, mUsername);
+                            startActivity(userIntent);
                             finish();
+                        } else {
+                            Log.e(TAG, "User came back as null");
+                        }
                         }
                     }
                 });
