@@ -38,6 +38,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     // Firebase instance variables
     private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
     private GoogleApiClient mGoogleApiClient;
     private SignInButton mSignInButton;
     private FirebaseUser user;
@@ -53,6 +54,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_sign_in);
         // Initialize FirebaseAuth
         mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
         mSignInButton = (SignInButton) findViewById(R.id.sign_in_button);
         mSignInButton.setSize(SignInButton.SIZE_WIDE);
@@ -117,26 +119,12 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 // Google Sign-In was successful, authenticate with Firebase
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
-
-                String username = account.getDisplayName();
-                Intent loginIntent = new Intent(this, DisplayActivity.class);
-                loginIntent.putExtra(EXTRA_USER, username);
-                startActivity(loginIntent);
-                startActivity(loginIntent);
-            } else{
-                // Google Sign-In failed
-                Context context = getApplicationContext();
-                CharSequence text = "Login Failed!";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
                 user = mFirebaseAuth.getCurrentUser();
-                String convertedUser = user.getDisplayName();
+                String mUsername = user.getDisplayName();
+                Log.d(TAG, "This is the username " + user);
                 Intent userIntent = new Intent(this, DisplayActivity.class);
-                userIntent.putExtra(EXTRA_USER, convertedUser);
+                userIntent.putExtra(EXTRA_USER, mUsername);
                 startActivity(userIntent);
-                Log.e(TAG, "I made it!");
             } else {
                 // Google Sign-In failed
                 Context context = getApplicationContext();
@@ -149,6 +137,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             }
         }
     }
+
+
 
     /**
      * firebaseAuthWithGoogle
@@ -172,7 +162,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                             Toast.makeText(SignInActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
-                            startActivity(new Intent(SignInActivity.this, MainActivity.class));
+                            startActivity(new Intent(SignInActivity.this, DisplayActivity.class));
                             finish();
                         }
                     }
@@ -218,6 +208,12 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onPause() {
         super.onPause();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
     }
 }
