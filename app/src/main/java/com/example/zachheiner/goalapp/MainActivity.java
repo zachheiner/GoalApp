@@ -2,6 +2,7 @@ package com.example.zachheiner.goalapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * onCreate
      * Here our button and event listener are set and initialized for use.
+     *
      * @param savedInstanceState
      */
     @Override
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, SignInActivity.class));
             finish();
         } else {
-            String mUsername = mFirebaseUser.getDisplayName();
+            final String mUsername = mFirebaseUser.getDisplayName();
             if (mFirebaseUser.getPhotoUrl() != null) {
                 Context context = getApplicationContext();
                 CharSequence text = "Logged in as " + mUsername;
@@ -55,17 +57,22 @@ public class MainActivity extends AppCompatActivity {
                 loginToast.show();
                 String mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
                 Log.d(TAG, "Firebase User Found, Show Goals");
-                Intent displayIntent = new Intent(this, DisplayActivity.class);
-                displayIntent.putExtra(EXTRA_USER, mUsername);
-                startActivity(displayIntent);
-                finish();
+
+                new Handler().postDelayed(new Runnable() {
+
+                    public void run() {
+
+                        Intent displayIntent = new Intent(MainActivity.this, DisplayActivity.class);
+                        displayIntent.putExtra(EXTRA_USER, mUsername);
+                        startActivity(displayIntent);
+                        finish();
+                    }
+                }, 2000);
+
             }
-            Intent displayIntent = new Intent(this, DisplayActivity.class);
-            displayIntent.putExtra(EXTRA_USER, mUsername);
-            startActivity(displayIntent);
-            finish();
+
         }
-        
+
     }
 
 }

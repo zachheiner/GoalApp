@@ -194,7 +194,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                                 Bundle tokenBundle = new Bundle();
                                 tokenBundle.putString("TOKEN", refreshedToken);
                                 String mUsername = account.getDisplayName();
-                                Intent userIntent = new Intent(SignInActivity.this, DisplayActivity.class);
+                                Intent userIntent = new Intent(SignInActivity.this, MainActivity.class);
                                 userIntent.putExtras(tokenBundle);
                                 userIntent.putExtra(EXTRA_USER, mUsername);
                                 startActivity(userIntent);
