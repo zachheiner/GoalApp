@@ -57,28 +57,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-        // Initialize FirebaseAuth
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
-        mSignInButton = (SignInButton) findViewById(R.id.sign_in_button);
-        mSignInButton.setSize(SignInButton.SIZE_WIDE);
-        mSignInButton.setOnClickListener(this);
-
-        // Configure sign-in to request the user's ID, email address, and basic
-        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this /* FragmentActivity*/,this /*OnConnectionFailedListener*/)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-
-        // Build a GoogleSignInClient with the options specified by gso.
-        GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
 
@@ -188,11 +167,12 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                         } else {
                             if (account != null) {
                                 Log.d(TAG, "user is not null");
-                                FirebaseUser user = mFirebaseAuth.getCurrentUser();
+                                //FirebaseUser user = mFirebaseAuth.getCurrentUser();
                                 String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-                                String token = mFirebaseAuth.getUid();
+                                String userUID = mFirebaseAuth.getUid();
                                 Bundle tokenBundle = new Bundle();
-                                tokenBundle.putString("TOKEN", refreshedToken);
+                                tokenBundle.putString("TOKEN1", refreshedToken);
+                                tokenBundle.putString("TOKEN2", userUID);
                                 String mUsername = account.getDisplayName();
                                 Intent userIntent = new Intent(SignInActivity.this, MainActivity.class);
                                 userIntent.putExtras(tokenBundle);
@@ -237,10 +217,28 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onStart() {
         super.onStart();
-        // Check for existing Google Sign In account, if the user is already signed in
-        // the GoogleSignInAccount will be non-null.
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        //updateUI(account);
+        // Initialize FirebaseAuth
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+
+        mSignInButton = (SignInButton) findViewById(R.id.sign_in_button);
+        mSignInButton.setSize(SignInButton.SIZE_WIDE);
+        mSignInButton.setOnClickListener(this);
+
+        // Configure sign-in to request the user's ID, email address, and basic
+        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this /* FragmentActivity*/,this /*OnConnectionFailedListener*/)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+
+        // Build a GoogleSignInClient with the options specified by gso.
+        GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
     @Override
