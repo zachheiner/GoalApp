@@ -9,7 +9,6 @@
 
     <EditText
         android:id="@+id/editText4"
-        android:labelFor="@+id/editText4"
         android:layout_width="66dp"
         android:layout_height="43dp"
         android:layout_marginBottom="8dp"
@@ -17,8 +16,9 @@
         android:layout_marginTop="12dp"
         android:ems="10"
         android:fontFamily="@font/krona_one"
+        android:hint="@string/_100"
         android:inputType="number"
-        android:text="@string/_100"
+        android:labelFor="@+id/editText4"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/textView10"
         app:layout_constraintEnd_toEndOf="parent"
@@ -80,8 +80,8 @@
         android:layout_marginTop="12dp"
         android:ems="10"
         android:fontFamily="@font/krona_one"
+        android:hint="@string/goal"
         android:labelFor="@+id/editText"
-        android:text="@string/goal"
         android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.526"
@@ -90,7 +90,6 @@
 
     <EditText
         android:id="@+id/editText3"
-        android:labelFor="@+id/editText3"
         android:layout_width="66dp"
         android:layout_height="43dp"
         android:layout_marginBottom="8dp"
@@ -98,8 +97,9 @@
         android:layout_marginTop="12dp"
         android:ems="10"
         android:fontFamily="@font/krona_one"
+        android:hint="@string/_0"
         android:inputType="number"
-        android:text="@string/_0"
+        android:labelFor="@+id/editText3"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/textView10"
         app:layout_constraintStart_toStartOf="parent"
@@ -146,16 +146,16 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:fontFamily="@font/krona_one"
+        android:hint="@string/why"
         android:inputType="textMultiLine"
         android:labelFor="@+id/editText5"
-        android:text="@string/why"
         android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/add_goal_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -170,7 +170,7 @@
         app:layout_constraintVertical_bias="0.6" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/cancel_button"
         android:layout_width="wrap_content"
         android:layout_height="46dp"
         android:layout_marginBottom="8dp"
@@ -181,7 +181,7 @@
         android:fontFamily="@font/krona_one"
         android:text="@string/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintEnd_toStartOf="@+id/add_goal_button"
         app:layout_constraintHorizontal_bias="0.345"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText5"
