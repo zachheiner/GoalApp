@@ -26,10 +26,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 /**
  * Class SignInActivity Definition
- *
+ * Here we will sign in a user and verify that they have access.
  */
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private static final String TAG = "SignInActivity";
@@ -39,14 +40,18 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     // Firebase instance variables
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
+    private GoogleSignInAccount account;
     private GoogleApiClient mGoogleApiClient;
     private SignInButton mSignInButton;
-    private FirebaseUser user;
 
     /**
      * onCreate
-     *
+     * Here we will create an instance of FirebaseAuth.
+     * We will get a current user and set it to mFirebaseUser
+     * The sign in button will be created and we will set it's size and set an onClick listener.
+     * It will also create all items needed for googleSignInClient.
      * @param savedInstanceState
+     * @author Bingham
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,8 +84,10 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     /**
      * onClick
+     * When this function is activated it will call the signIn function.
+     * @param v - sign in view.
      *
-     * @param v
+     * @author Bingham
      */
     //@Override
     public void onClick(View v) {
@@ -93,7 +100,10 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     /**
      * signIn
+     * here an intent is created and receives mGoogleApiClient it will then
+     * call the startActivityForResult and pass in the SignInIntent and the RC_SIGN_IN code.
      *
+     * @author Bingham
      */
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
@@ -102,10 +112,18 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     /**
      * onActivityResult
+     * @param requestCode  RC_SIGN_IN
+     * @param resultCode  Result Code
+     * @param data  mGoogleApiClient
      *
-     * @param requestCode
-     * @param resultCode
-     * @param data
+     * This will check the requestCode if it is good then it will authorize the GoogleSignInApi
+     * with the intent with the mGoogleApiClient and store the result in result.
+     * if the result is successful then we will log that it was successful and that we captured
+     * the correct username. We will then send the captured account to firebaseAuthWithGoogle.
+     * if the result is unsuccessful then we will log a Google failed message and send a toast
+     * to the user that their Login Failed.
+     *
+     * @author Bingham
      */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -116,17 +134,12 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
                 Log.d(TAG, "Google Sign-In Success.");
-                // Google Sign-In was successful, authenticate with Firebase
-                GoogleSignInAccount account = result.getSignInAccount();
+                // Google Sign-In was successful, authenticated with Firebase
+                account = result.getSignInAccount();
+                Log.d(TAG, "Captured the username");
                 firebaseAuthWithGoogle(account);
-                user = mFirebaseAuth.getCurrentUser();
-                String mUsername = user.getDisplayName();
-                Log.d(TAG, "This is the username " + user);
-                Intent userIntent = new Intent(this, DisplayActivity.class);
-                userIntent.putExtra(EXTRA_USER, mUsername);
-                startActivity(userIntent);
             } else {
-                // Google Sign-In failed
+                // G5oogle Sign-In failed
                 Context context = getApplicationContext();
                 CharSequence text = "Login Failed";
                 int duration = Toast.LENGTH_SHORT;
@@ -142,12 +155,23 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     /**
      * firebaseAuthWithGoogle
-     *
      * @param acct
+     *
+     * this will receive the google account and will log which account we are receiving.
+     * it will then create a credential by grabbing the IdToken from the account.
+     * it will then authorize with firebase calling the signInWithcredential method and passing
+     * the newly created credential.
+     * if the addOnCompleteListener is successful then a success message will be logged.
+     * if it it is not successful then an exception message will be logged and an
+     * Authentication failed messaged will be presented to the user. if the account is not
+     * null then the DisplayActivity will be invoked if it is equal to null then a
+     * User came back as null message will be logged.
+     *
+     * @author Bingham
      */
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGooogle:" + acct.getId());
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+        final AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mFirebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -162,8 +186,23 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                             Toast.makeText(SignInActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
-                            startActivity(new Intent(SignInActivity.this, DisplayActivity.class));
-                            finish();
+
+                            if (account != null) {
+                                Log.d(TAG, "user is not null");
+                                FirebaseUser user = mFirebaseAuth.getCurrentUser();
+                                String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+                                String token = mFirebaseAuth.getUid();
+                                Bundle tokenBundle = new Bundle();
+                                tokenBundle.putString("TOKEN", refreshedToken);
+                                String mUsername = account.getDisplayName();
+                                Intent userIntent = new Intent(SignInActivity.this, DisplayActivity.class);
+                                userIntent.putExtras(tokenBundle);
+                                userIntent.putExtra(EXTRA_USER, mUsername);
+                                startActivity(userIntent);
+                                finish();
+                            } else {
+                                Log.e(TAG, "User came back as null");
+                            }
                         }
                     }
                 });

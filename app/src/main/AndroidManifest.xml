@@ -16,12 +16,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity android:name=".SignInActivity"></activity>
         <activity android:name=".DisplayActivity"></activity>
+=======
+        <activity android:name=".SignInActivity" />
+        <activity android:name=".DisplayActivity" />
+>>>>>>> origin
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".CreateGoal"></activity>
     </application>
 
 </manifest>
