@@ -53,17 +53,12 @@ public class MainActivity extends AppCompatActivity {
 
                 Toast loginToast = Toast.makeText(context, text, duration);
                 loginToast.show();
-                String mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
                 Log.d(TAG, "Firebase User Found, Show Goals");
                 Intent displayIntent = new Intent(this, DisplayActivity.class);
                 displayIntent.putExtra(EXTRA_USER, mUsername);
                 startActivity(displayIntent);
                 finish();
             }
-            Intent displayIntent = new Intent(this, DisplayActivity.class);
-            displayIntent.putExtra(EXTRA_USER, mUsername);
-            startActivity(displayIntent);
-            finish();
         }
         
     }

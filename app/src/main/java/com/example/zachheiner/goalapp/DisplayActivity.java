@@ -62,9 +62,11 @@ public class DisplayActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String username = intent.getStringExtra(SignInActivity.EXTRA_USER);
         Bundle tokenBundle = getIntent().getExtras();
-        String access_token = tokenBundle.getString("TOKEN");
+        String access_token = tokenBundle.getString("TOKEN1");
+        String userID = tokenBundle.getString("TOKEN2");
 
         Log.d(TAG, "Access Token: " + access_token);
+        Log.d(TAG, "Use UID: " + userID);
 
         mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         mFirebaseUser.getIdToken(hasAccess);
