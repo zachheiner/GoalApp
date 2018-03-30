@@ -26,14 +26,16 @@
     <TextView
         android:id="@+id/textView3"
         android:layout_width="290dp"
-        android:layout_height="68dp"
+        android:layout_height="120dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/krona_one"
-        android:text="Welcome"
+        android:fontFamily="sans-serif"
+        android:text=" Welcome to GoalApp"
+        android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:textSize="42sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -41,18 +43,19 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="136dp"
+        android:layout_width="168dp"
         android:layout_height="68dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="52dp"
-        android:fontFamily="@font/krona_one"
+        android:fontFamily="sans-serif"
         android:text="Please Sign In"
+        android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        tools:textAlignment="center" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
 </android.support.constraint.ConstraintLayout>
