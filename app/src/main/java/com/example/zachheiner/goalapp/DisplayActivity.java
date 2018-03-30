@@ -68,9 +68,6 @@ public class DisplayActivity extends AppCompatActivity {
         Log.d(TAG, "Access Token: " + access_token);
         Log.d(TAG, "User UID: " + userID);
 
-        mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        mFirebaseUser.getIdToken(hasAccess);
-
         String user = "Received intent with " + username;
         Log.i(TAG, user);
 
