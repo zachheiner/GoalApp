@@ -26,6 +26,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 /**
  * Class SignInActivity Definition
@@ -168,7 +169,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
      */
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGooogle:" + acct.getId());
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+        final AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mFirebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -184,15 +185,21 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             if (account != null) {
-                            Log.d(TAG, "user is not null");
-                            String mUsername = account.getDisplayName();
-                            Intent userIntent = new Intent(SignInActivity.this, DisplayActivity.class);
-                            userIntent.putExtra(EXTRA_USER, mUsername);
-                            startActivity(userIntent);
-                            finish();
-                        } else {
-                            Log.e(TAG, "User came back as null");
-                        }
+                                Log.d(TAG, "user is not null");
+                                FirebaseUser user = mFirebaseAuth.getCurrentUser();
+                                String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+                                String token = mFirebaseAuth.getUid();
+                                Bundle tokenBundle = new Bundle();
+                                tokenBundle.putString("TOKEN", refreshedToken);
+                                String mUsername = account.getDisplayName();
+                                Intent userIntent = new Intent(SignInActivity.this, DisplayActivity.class);
+                                userIntent.putExtras(tokenBundle);
+                                userIntent.putExtra(EXTRA_USER, mUsername);
+                                startActivity(userIntent);
+                                finish();
+                            } else {
+                                Log.e(TAG, "User came back as null");
+                            }
                         }
                     }
                 });

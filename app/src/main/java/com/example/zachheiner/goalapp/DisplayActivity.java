@@ -1,6 +1,7 @@
 package com.example.zachheiner.goalapp;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -8,9 +9,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -26,6 +33,9 @@ import java.io.IOException;
  */
 public class DisplayActivity extends AppCompatActivity {
     private static final String TAG = "DisplayActivity";
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
+    private boolean hasAccess = true;
 
     /**
      * onCreate
@@ -40,12 +50,23 @@ public class DisplayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        Button signOutButton = (Button) findViewById(R.id.sign_out_button);
+        signOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                signOut();
+            }
+        });
 
         Intent intent = getIntent();
         String username = intent.getStringExtra(SignInActivity.EXTRA_USER);
-        //String password = intent.getStringExtra(MainActivity.EXTRA_PASSWORD);
+        Bundle tokenBundle = getIntent().getExtras();
+        String access_token = tokenBundle.getString("TOKEN");
+
+        Log.d(TAG, "Access Token: " + access_token);
+
+        mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        mFirebaseUser.getIdToken(hasAccess);
 
         String user = "Received intent with " + username;
         Log.i(TAG, user);
@@ -57,29 +78,11 @@ public class DisplayActivity extends AppCompatActivity {
         DisplayId.setText(outputWelcomeMessage);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId())
-        {
-            case R.id.menuLogout:
-
-                FirebaseAuth.getInstance().signOut();
-                finish();
-                startActivity(new Intent(this, MainActivity.class));
-
-                break;
-        }
-
-        return true;
+    public void signOut() {
+        Log.d(TAG, "Sign Out Button Clicked and sign out succeeded.");
+        mFirebaseAuth.getInstance().signOut();
+        hasAccess = false;
+        finish();
+        startActivity(new Intent(this, MainActivity.class));
     }
 }
