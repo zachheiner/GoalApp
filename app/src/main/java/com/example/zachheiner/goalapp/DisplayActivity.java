@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 /**
@@ -39,5 +40,10 @@ public class DisplayActivity extends AppCompatActivity {
         TextView DisplayId;
         DisplayId = (TextView) (findViewById(R.id.TextView_Display));
         DisplayId.setText(outputWelcomeMessage);
+    }
+
+    public void createGoal(View view){
+        Intent createNewGoal = new Intent(this, CreateGoal.class);
+        startActivity(createNewGoal);
     }
 }
