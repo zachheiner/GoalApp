@@ -66,7 +66,7 @@ public class DisplayActivity extends AppCompatActivity {
         String userID = tokenBundle.getString("TOKEN2");
 
         Log.d(TAG, "Access Token: " + access_token);
-        Log.d(TAG, "Use UID: " + userID);
+        Log.d(TAG, "User UID: " + userID);
 
         mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         mFirebaseUser.getIdToken(hasAccess);
