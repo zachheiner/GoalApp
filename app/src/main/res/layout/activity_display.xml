@@ -4,55 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/colorBackground"
+    android:orientation="vertical"
     tools:context="com.example.zachheiner.goalapp.DisplayActivity">
 
     <ImageButton
         android:id="@+id/button_addGoal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="300dp"
-        android:layout_marginTop="24dp"
-        android:onClick="createGoal"
+        android:layout_width="39dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="500dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="330dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorPrimary"
         android:contentDescription="@string/add_goal"
+        android:onClick="createGoal"
+        android:tooltipText="Add a Goal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.051"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@android:drawable/ic_input_add" />
-
-    <ProgressBar
-        android:id="@+id/progressBar2"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="269dp"
-        android:layout_height="32dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.239" />
 
     <TextView
         android:id="@+id/TextView_Display"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="21dp"
+        android:fontFamily="sans-serif"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/sign_out_button"
@@ -61,11 +52,16 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimary"
+        android:fontFamily="sans-serif"
         android:text="@string/sign_out_button"
+        android:textColor="@color/colorBackground"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
+        app:layout_constraintTop_toBottomOf="@+id/TextView_Display"
+        app:layout_constraintVertical_bias="0.957" />
 
 </android.support.constraint.ConstraintLayout>

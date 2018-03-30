@@ -186,7 +186,6 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                             Toast.makeText(SignInActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
-
                             if (account != null) {
                                 Log.d(TAG, "user is not null");
                                 FirebaseUser user = mFirebaseAuth.getCurrentUser();

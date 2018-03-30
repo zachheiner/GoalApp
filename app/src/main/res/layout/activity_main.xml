@@ -16,17 +16,18 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="104dp"
-        android:fontFamily="@font/krona_one"
+        android:fontFamily="sans-serif"
         android:text="GoalApp"
+        android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.WindowTitle"
         android:textColor="@color/colorPrimary"
         android:textSize="42sp"
+        android:textStyle="bold"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:textAlignment="center" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
@@ -36,15 +37,16 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/krona_one"
-        android:textColor="@color/colorPrimary"
+        android:fontFamily="sans-serif"
         android:text="An App for those that do"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
         android:textSize="24sp"
+        android:textStyle="bold"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.238"
-        tools:textAlignment="center" />
+        app:layout_constraintVertical_bias="0.238" />
 </android.support.constraint.ConstraintLayout>
