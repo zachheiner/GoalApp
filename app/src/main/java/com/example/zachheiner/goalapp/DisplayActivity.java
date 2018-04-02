@@ -61,9 +61,9 @@ public class DisplayActivity extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
-        String username = intent.getStringExtra(SignInActivity.EXTRA_USER);
-        String access_token = intent.getStringExtra(SignInActivity.EXTRA_TOKEN);
-        String userID = intent.getStringExtra(SignInActivity.EXTRA_UID);
+        String username = intent.getStringExtra(MainActivity.EXTRA_USER);
+        String access_token = intent.getStringExtra(MainActivity.EXTRA_TOKEN);
+        String userID = intent.getStringExtra(MainActivity.EXTRA_UID);
 
         Log.d(TAG, "Access Token: " + access_token);
         Log.d(TAG, "User UID: " + userID);

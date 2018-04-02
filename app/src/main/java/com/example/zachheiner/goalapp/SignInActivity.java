@@ -175,7 +175,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                                 Log.d(TAG, "Refreshed Token: " + refreshedToken);
                                 Log.d(TAG, "userUID: " + userUID);
                                 String mUsername = account.getDisplayName();
-                                Intent userIntent = new Intent(SignInActivity.this, DisplayActivity.class);
+                                Intent userIntent = new Intent(SignInActivity.this, MainActivity.class);
                                 userIntent.putExtra(EXTRA_USER, mUsername);
                                 userIntent.putExtra(EXTRA_TOKEN, refreshedToken);
                                 userIntent.putExtra(EXTRA_UID, userUID);
