@@ -31,6 +31,8 @@ import com.google.firebase.iid.FirebaseInstanceId;
 /**
  * Class SignInActivity Definition
  * Here we will sign in a user and verify that they have access.
+ *
+ * @author Bingham
  */
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private static final String TAG = "SignInActivity";
@@ -104,7 +106,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
      * if the result is unsuccessful then we will log a Google failed message and send a toast
      * to the user that their Login Failed.
      *
-     * @author Bingham
+     * @author Bingham/Heiner/Stark
      */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -148,7 +150,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
      * null then the DisplayActivity will be invoked if it is equal to null then a
      * User came back as null message will be logged.
      *
-     * @author Bingham
+     * @author Bingham/Heiner/Stark
      */
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGooogle:" + acct.getId());

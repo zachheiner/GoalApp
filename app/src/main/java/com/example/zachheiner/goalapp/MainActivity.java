@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
      * Here our button and event listener are set and initialized for use.
      *
      * @param savedInstanceState
+     *
+     * @author Bingham/Stark/Heiner
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
