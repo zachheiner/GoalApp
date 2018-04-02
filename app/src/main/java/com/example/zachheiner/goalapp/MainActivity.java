@@ -19,7 +19,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    private static final String EXTRA_USER = "com.example.zachheiner.goalapp.EXTRA_USER";
+    public static final String EXTRA_USER = "com.example.zachheiner.goalapp.EXTRA_USER";
+    public static final String EXTRA_TOKEN = "com.example.zachheiner.goalapp.EXTRA_TOKEN";
+    public static final String EXTRA_UID = "com.example.zachheiner.goalapp.EXTRA_UID";
 
     /**
      * onCreate
@@ -60,9 +62,14 @@ public class MainActivity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
 
                     public void run() {
-
+                        Intent intent = getIntent();
+                        String username = intent.getStringExtra(SignInActivity.EXTRA_USER);
+                        String access_token = intent.getStringExtra(SignInActivity.EXTRA_TOKEN);
+                        String userID = intent.getStringExtra(SignInActivity.EXTRA_UID);
                         Intent displayIntent = new Intent(MainActivity.this, DisplayActivity.class);
-                        displayIntent.putExtra(EXTRA_USER, mUsername);
+                        displayIntent.putExtra(EXTRA_USER, username);
+                        displayIntent.putExtra(EXTRA_TOKEN, access_token);
+                        displayIntent.putExtra(EXTRA_UID, userID);
                         startActivity(displayIntent);
                         finish();
                     }

@@ -61,10 +61,9 @@ public class DisplayActivity extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
-        String username = intent.getStringExtra(SignInActivity.EXTRA_USER);
-        Bundle tokenBundle = getIntent().getExtras();
-        String access_token = tokenBundle.getString("TOKEN1");
-        String userID = tokenBundle.getString("TOKEN2");
+        String username = intent.getStringExtra(MainActivity.EXTRA_USER);
+        String access_token = intent.getStringExtra(MainActivity.EXTRA_TOKEN);
+        String userID = intent.getStringExtra(MainActivity.EXTRA_UID);
 
         Log.d(TAG, "Access Token: " + access_token);
         Log.d(TAG, "User UID: " + userID);
@@ -76,7 +75,10 @@ public class DisplayActivity extends AppCompatActivity {
 
         mFirebaseUser = mFirebaseAuth.getInstance().getCurrentUser();
         String currentUser = mFirebaseUser.getDisplayName();
+        String verifyUID = mFirebaseUser.getUid();
         Log.d(TAG, "Current User: " + currentUser);
+        Log.d(TAG, "Verify UID: " + verifyUID);
+        Log.d(TAG, "Original UID: " + userID);
 
         TextView DisplayId;
         DisplayId = (TextView) (findViewById(R.id.TextView_Display));
