@@ -35,6 +35,8 @@ import com.google.firebase.iid.FirebaseInstanceId;
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private static final String TAG = "SignInActivity";
     public static final String EXTRA_USER = "com.example.zachheiner.goalapp.EXTRA_USER";
+    public static final String EXTRA_TOKEN = "com.example.zachheiner.goalapp.EXTRA_TOKEN";
+    public static final String EXTRA_UID = "com.example.zachheiner.goalapp.EXTRA_UID";
     private static final int RC_SIGN_IN = 9001;
 
     // Firebase instance variables
@@ -170,13 +172,13 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                                 //FirebaseUser user = mFirebaseAuth.getCurrentUser();
                                 String refreshedToken = FirebaseInstanceId.getInstance().getToken();
                                 String userUID = mFirebaseAuth.getUid();
-                                Bundle tokenBundle = new Bundle();
-                                tokenBundle.putString("TOKEN1", refreshedToken);
-                                tokenBundle.putString("TOKEN2", userUID);
+                                Log.d(TAG, "Refreshed Token: " + refreshedToken);
+                                Log.d(TAG, "userUID: " + userUID);
                                 String mUsername = account.getDisplayName();
-                                Intent userIntent = new Intent(SignInActivity.this, MainActivity.class);
-                                userIntent.putExtras(tokenBundle);
+                                Intent userIntent = new Intent(SignInActivity.this, DisplayActivity.class);
                                 userIntent.putExtra(EXTRA_USER, mUsername);
+                                userIntent.putExtra(EXTRA_TOKEN, refreshedToken);
+                                userIntent.putExtra(EXTRA_UID, userUID);
                                 startActivity(userIntent);
                                 finish();
                             } else {
