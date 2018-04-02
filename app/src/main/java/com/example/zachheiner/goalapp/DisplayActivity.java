@@ -88,14 +88,15 @@ public class DisplayActivity extends AppCompatActivity {
     public void createGoal(View view){
     Intent createNewGoal = new Intent(this, CreateGoal.class);
     startActivity(createNewGoal);
+    finish();
     }
 
     public void signOut() {
-        Log.d(TAG, "Sign Out Button Clicked and sign out succeeded.");
         mFirebaseAuth.getInstance().signOut();
         hasAccess = false;
-        finish();
+        Log.d(TAG, "Sign Out Button Clicked and sign out succeeded.");
         startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 }
 
