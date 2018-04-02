@@ -15,9 +15,9 @@
         android:layout_height="69dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="172dp"
         android:fontFamily="sans-serif"
-        android:text="GoalApp"
+        android:text="@string/goalapp"
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.WindowTitle"
         android:textColor="@color/colorPrimary"
@@ -38,7 +38,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="sans-serif"
-        android:text="An App for those that do"
+        android:text="@string/an_app_for_those_that_do"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp"
@@ -48,5 +48,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.238" />
+        app:layout_constraintVertical_bias="0.423" />
 </android.support.constraint.ConstraintLayout>

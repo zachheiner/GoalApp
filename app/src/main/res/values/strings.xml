@@ -21,5 +21,7 @@
     <string name="add_goal">Add Goal</string>
     <string name="cancel">Cancel</string>
     <string name="sign_out_button">Sign Out</string>
+    <string name="goalapp">GoalApp</string>
+    <string name="an_app_for_those_that_do">An App for those that do</string>
 </resources>
 
