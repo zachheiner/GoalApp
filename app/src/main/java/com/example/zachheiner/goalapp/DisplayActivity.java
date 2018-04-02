@@ -15,6 +15,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,11 +38,14 @@ import java.io.IOException;
  * Here our Second Activity receives the information from
  * the main activity and is able to pull down the information
  * needed by the user after their identity has been verified.
+ *
+ * @author Bingham
  */
-public class DisplayActivity extends AppCompatActivity {
+public class DisplayActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
     private static final String TAG = "DisplayActivity";
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
+    private GoogleApiClient mGoogleApiClient;
     private boolean hasAccess = true;
 
     /**
@@ -46,11 +55,23 @@ public class DisplayActivity extends AppCompatActivity {
      * goals if they have been created or a listener waiting
      * for the user to add a new goal for themselves.
      * @param savedInstanceState
+     *
+     * @author Bingham
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this /* FragmentActivity*/,  this /*OnConnectionFailedListener*/)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
 
         Button signOutButton = (Button) findViewById(R.id.sign_out_button);
         signOutButton.setOnClickListener(new View.OnClickListener() {
@@ -85,17 +106,44 @@ public class DisplayActivity extends AppCompatActivity {
         DisplayId.setText(outputWelcomeMessage);
     }
 
+    /**
+     * createGoal
+     *
+     * @param view
+     * @author Heiner
+     */
     public void createGoal(View view){
     Intent createNewGoal = new Intent(this, CreateGoal.class);
     startActivity(createNewGoal);
+    finish();
     }
 
+    /**
+     * signOut
+     * This method will change the authentication state for the firebase user and
+     * also log out the google user in an Async task. It will then return to the Main
+     * Activity.
+     *
+     * @author Bingham.
+     */
     public void signOut() {
-        Log.d(TAG, "Sign Out Button Clicked and sign out succeeded.");
         mFirebaseAuth.getInstance().signOut();
+        // Google sign out
+        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+                new ResultCallback<Status>() {
+                    @Override
+                    public void onResult(@NonNull Status status) {
+                    }
+                });
         hasAccess = false;
-        finish();
+        Log.d(TAG, "Sign Out Button Clicked and sign out succeeded.");
         startActivity(new Intent(this, MainActivity.class));
+        finish();
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
     }
 }
 
