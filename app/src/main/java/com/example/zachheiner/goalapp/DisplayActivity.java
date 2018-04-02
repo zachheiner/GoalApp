@@ -2,6 +2,7 @@ package com.example.zachheiner.goalapp;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -72,6 +73,10 @@ public class DisplayActivity extends AppCompatActivity {
         Log.i(TAG, user);
 
         String outputWelcomeMessage = "Welcome to GoalApp " + username;
+
+        mFirebaseUser = mFirebaseAuth.getInstance().getCurrentUser();
+        String currentUser = mFirebaseUser.getDisplayName();
+        Log.d(TAG, "Current User: " + currentUser);
 
         TextView DisplayId;
         DisplayId = (TextView) (findViewById(R.id.TextView_Display));
