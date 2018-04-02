@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
                 Toast loginToast = Toast.makeText(context, text, duration);
                 loginToast.show();
-                String mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
                 Log.d(TAG, "Firebase User Found, Show Goals");
 
                 new Handler().postDelayed(new Runnable() {
@@ -70,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
                 }, 2000);
 
             }
-
         }
 
     }
