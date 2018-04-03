@@ -119,13 +119,24 @@
                 android:fontFamily="sans-serif"
                 android:text="TextView" />
 
-            <SeekBar
-                android:id="@+id/goalBar2"
-                style="@style/Widget.AppCompat.SeekBar.Discrete"
+            <RelativeLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:max="10"
-                android:progress="3" />
+                android:layout_height="match_parent"
+                android:padding="20dp">
+                <SeekBar
+                    android:id="@+id/goalBar2"
+                    android:layout_centerInParent="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="100"
+                    android:progress="50"
+                    android:progressDrawable="@drawable/progress_drawable"
+                    android:thumb="@drawable/thumb_drawable"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="0dp"
+                    android:thumbOffset="0dp" />
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/goalName3"
@@ -136,13 +147,24 @@
                 android:fontFamily="sans-serif"
                 android:text="TextView" />
 
-            <SeekBar
-                android:id="@+id/goalBar3"
-                style="@style/Widget.AppCompat.SeekBar.Discrete"
+            <RelativeLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:max="10"
-                android:progress="3" />
+                android:layout_height="match_parent"
+                android:padding="20dp">
+                <SeekBar
+                    android:id="@+id/goalBar3"
+                    android:layout_centerInParent="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="100"
+                    android:progress="50"
+                    android:progressDrawable="@drawable/progress_drawable"
+                    android:thumb="@drawable/thumb_drawable"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="0dp"
+                    android:thumbOffset="0dp" />
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/goalName4"
@@ -153,13 +175,24 @@
                 android:fontFamily="sans-serif"
                 android:text="TextView" />
 
-            <SeekBar
-                android:id="@+id/goalBar4"
-                style="@style/Widget.AppCompat.SeekBar.Discrete"
+            <RelativeLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:max="10"
-                android:progress="3" />
+                android:layout_height="match_parent"
+                android:padding="20dp">
+                <SeekBar
+                    android:id="@+id/goalBar4"
+                    android:layout_centerInParent="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="100"
+                    android:progress="50"
+                    android:progressDrawable="@drawable/progress_drawable"
+                    android:thumb="@drawable/thumb_drawable"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="0dp"
+                    android:thumbOffset="0dp" />
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/goalName5"
@@ -170,13 +203,24 @@
                 android:fontFamily="sans-serif"
                 android:text="TextView" />
 
-            <SeekBar
-                android:id="@+id/goalBar5"
-                style="@style/Widget.AppCompat.SeekBar.Discrete"
+            <RelativeLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:max="10"
-                android:progress="3" />
+                android:layout_height="match_parent"
+                android:padding="20dp">
+                <SeekBar
+                    android:id="@+id/goalBar5"
+                    android:layout_centerInParent="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="100"
+                    android:progress="50"
+                    android:progressDrawable="@drawable/progress_drawable"
+                    android:thumb="@drawable/thumb_drawable"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="0dp"
+                    android:thumbOffset="0dp" />
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/goalName6"
@@ -187,13 +231,24 @@
                 android:fontFamily="sans-serif"
                 android:text="TextView" />
 
-            <SeekBar
-                android:id="@+id/goalBar6"
-                style="@style/Widget.AppCompat.SeekBar.Discrete"
+            <RelativeLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:max="10"
-                android:progress="3" />
+                android:layout_height="match_parent"
+                android:padding="20dp">
+                <SeekBar
+                    android:id="@+id/goalBar6"
+                    android:layout_centerInParent="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="100"
+                    android:progress="50"
+                    android:progressDrawable="@drawable/progress_drawable"
+                    android:thumb="@drawable/thumb_drawable"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="0dp"
+                    android:thumbOffset="0dp" />
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/goalName7"
@@ -204,13 +259,24 @@
                 android:fontFamily="sans-serif"
                 android:text="TextView" />
 
-            <SeekBar
-                android:id="@+id/goalBar7"
-                style="@style/Widget.AppCompat.SeekBar.Discrete"
+            <RelativeLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:max="10"
-                android:progress="3" />
+                android:layout_height="match_parent"
+                android:padding="20dp">
+                <SeekBar
+                    android:id="@+id/goalBar7"
+                    android:layout_centerInParent="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="100"
+                    android:progress="50"
+                    android:progressDrawable="@drawable/progress_drawable"
+                    android:thumb="@drawable/thumb_drawable"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="0dp"
+                    android:thumbOffset="0dp" />
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 
