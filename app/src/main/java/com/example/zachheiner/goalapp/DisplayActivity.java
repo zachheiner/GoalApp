@@ -50,7 +50,7 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
     private FirebaseUser mFirebaseUser;
     private GoogleApiClient mGoogleApiClient;
     private boolean hasAccess = true;
-
+    FirebaseDatabase.getInstance().setPersistenceEnabled(true);
     /**
      * onCreate
      * we will create instances of the objects that the user
@@ -66,6 +66,7 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
 
+        
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
