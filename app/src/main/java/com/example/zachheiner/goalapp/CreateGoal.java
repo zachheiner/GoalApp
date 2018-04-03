@@ -1,19 +1,21 @@
 package com.example.zachheiner.goalapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 /**
  *
  * @author Heiner
  */
 public class CreateGoal extends AppCompatActivity {
-
+    private static final String TAG = "CreateGoal";
     /**
      *
-     * @param savedInstanceState
-     *
+1     *
      * @author Heiner
      */
     @Override
@@ -29,6 +31,8 @@ public class CreateGoal extends AppCompatActivity {
      * @author Heiner
      */
     public void Cancel(View view) {
+        Log.d(TAG, "Cancel method called....");
+        startActivity(new Intent(this, DisplayActivity.class));
         finish();
     }
 }

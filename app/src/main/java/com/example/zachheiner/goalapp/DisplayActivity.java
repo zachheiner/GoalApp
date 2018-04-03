@@ -43,6 +43,9 @@ import java.io.IOException;
  */
 public class DisplayActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
     private static final String TAG = "DisplayActivity";
+    public static final String EXTRA_USER = "com.example.zachheiner.goalapp.EXTRA_USER";
+    public static final String EXTRA_TOKEN = "com.example.zachheiner.goalapp.EXTRA_TOKEN";
+    public static final String EXTRA_UID = "com.example.zachheiner.goalapp.EXTRA_UID";
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
     private GoogleApiClient mGoogleApiClient;

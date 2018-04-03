@@ -19,12 +19,11 @@
         </activity>
         <activity android:name=".SignInActivity" />
         <activity android:name=".DisplayActivity" />
+        <activity android:name=".CreateGoal" android:parentActivityName=".DisplayActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
-        <activity android:name=".CreateGoal"></activity>
     </application>
 
 </manifest>
