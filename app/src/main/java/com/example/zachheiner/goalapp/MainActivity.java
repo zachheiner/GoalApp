@@ -2,27 +2,21 @@ package com.example.zachheiner.goalapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
-/*import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;*/
 
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.firebase.ui.database.SnapshotParser;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
+
+/*import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;*/
 
 
 
@@ -46,10 +40,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference mUsersDatabaseReference = mFirebaseDatabase.getReference().child("user");
-        DatabaseReference mGoalsDatabaseReference = mFirebaseDatabase.getReference().child("goal");
-        DatabaseReference mJournalDatabaseReference = mFirebaseDatabase.getReference().child("journal");
+        DatabaseReference mUserRef = mFirebaseDatabase.getReference().child("user");
+        DatabaseReference mGoalRef = mFirebaseDatabase.getReference().child("goal");
+        DatabaseReference mJournalRef = mFirebaseDatabase.getReference().child("journal");
 
 
         // Initialize Firebase Authentication

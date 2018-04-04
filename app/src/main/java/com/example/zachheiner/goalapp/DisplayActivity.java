@@ -50,7 +50,7 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
     private FirebaseUser mFirebaseUser;
     private GoogleApiClient mGoogleApiClient;
     private boolean hasAccess = true;
-    FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+
     /**
      * onCreate
      * we will create instances of the objects that the user
