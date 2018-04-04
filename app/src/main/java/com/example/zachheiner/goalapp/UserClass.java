@@ -14,7 +14,11 @@ public class UserClass {
 
     }
 
-    public UserClass() {
+    public UserClass(String id, String userName, String password, String journal){
+        this.id = id;
+        this.userName = userName;
+        this.password = password;
+        this.journal = journal;
 
     }
 
