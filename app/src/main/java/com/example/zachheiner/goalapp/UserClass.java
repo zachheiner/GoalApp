@@ -5,9 +5,20 @@ package com.example.zachheiner.goalapp;
  */
 
 public class UserClass {
+    private String id;
     private String userName;
     private String password;
     private String journal;
+
+    public UserClass() {
+
+    }
+
+    public UserClass() {
+
+    }
+
+    public String getId() {return id;}
 
     public String getUser() {
         return userName;
@@ -17,7 +28,9 @@ public class UserClass {
         return password;
     }
 
-    public String geJournal() { return journal; }
+    public String getJournal() { return journal; }
+
+    public void setId(String id) { this.id = id; }
 
     public void setUserName(String userName) {
         this.userName = userName;
