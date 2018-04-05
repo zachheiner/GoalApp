@@ -75,12 +75,12 @@
         android:textColor="@color/colorPrimary"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/goalNameText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/goalNameText"
         android:layout_width="349dp"
         android:layout_height="45dp"
         android:layout_marginBottom="8dp"
@@ -187,6 +187,7 @@
         android:background="@color/colorPrimary"
         android:fontFamily="sans-serif"
         android:text="@string/add_goal"
+        android:onClick="AddGoal"
         android:textColor="@color/colorBackground"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

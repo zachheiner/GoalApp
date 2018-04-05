@@ -1,23 +1,25 @@
 package com.example.zachheiner.goalapp;
 
 /**
- * Created by dpbin on 3/9/2018.
+ * Created by Heiner, Stark.
  */
 
 public class UserClass {
     private String id;
     private String userName;
-    private String password;
+    private String begin;
+    private String end;
     private String journal;
 
     public UserClass() {
 
     }
 
-    public UserClass(String id, String userName, String password, String journal){
+    public UserClass(String id, String userName, String begin, String end, String journal){
         this.id = id;
         this.userName = userName;
-        this.password = password;
+        this.begin = begin;
+        this.end = end;
         this.journal = journal;
 
     }
@@ -28,9 +30,9 @@ public class UserClass {
         return userName;
     }
 
-    public String getPassword() {
-        return password;
-    }
+    public String getBegin() { return begin; }
+
+    public String getEnd() {return end;}
 
     public String getJournal() { return journal; }
 
@@ -40,8 +42,12 @@ public class UserClass {
         this.userName = userName;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setBegin(String begin) {
+        this.begin = begin;
+    }
+
+    public void setEnd(String end) {
+        this.end = end;
     }
 
     public void setJournal(String journal) { this.journal = journal; }
