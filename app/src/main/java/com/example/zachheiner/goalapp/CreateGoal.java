@@ -62,7 +62,6 @@ import com.google.firebase.storage.UploadTask;
  */
 public class CreateGoal extends AppCompatActivity {
     private static final String TAG = "CreateGoal";
-    private static final String ID = "UID";
     private DatabaseReference mFirebaseDatabaseReference;
     private FirebaseUser mFirebaseUser;
 

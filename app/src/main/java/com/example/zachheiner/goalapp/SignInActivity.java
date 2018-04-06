@@ -44,9 +44,6 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     static final String ID = "UID";
     static final String USERNAME = "USERNAME";
     static final String TOKEN = "TOKEN";
-    public static final String EXTRA_USER = "com.example.zachheiner.goalapp.EXTRA_USER";
-    public static final String EXTRA_TOKEN = "com.example.zachheiner.goalapp.EXTRA_TOKEN";
-    public static final String EXTRA_UID = "com.example.zachheiner.goalapp.EXTRA_UID";
     private static final int RC_SIGN_IN = 9001;
 
     // Firebase instance variables
@@ -185,13 +182,15 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                                 String userUID = mFirebaseUser.getUid();
                                 String mUsername = account.getDisplayName();
 
+                                // set up shared preferences and send items to it.
                                 SharedPreferences sharedUID = getSharedPreferences(SHARED_FILE, Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedUID.edit();
                                 editor.putString(ID, userUID);
-                                editor.putString(TOKEN, FirebaseInstanceId.getInstance().getToken());
-                                editor.putString(USERNAME, account.getDisplayName());
+                                editor.putString(TOKEN, refreshedToken);
+                                editor.putString(USERNAME, mUsername);
                                 editor.apply();
 
+                                // verify that information is actually stored in shared preferences.
                                 SharedPreferences sharedPref = getSharedPreferences(SHARED_FILE, Context.MODE_PRIVATE);
                                 String UserId = sharedPref.getString(ID, "");
                                 String UserToken = sharedPref.getString(TOKEN, "");
@@ -200,14 +199,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                                 Log.d(TAG, "TOKEN from shared preferences: " + UserToken);
                                 Log.d(TAG, "USERNAME from shared preferences: " + UserUserName);
 
-                                Log.d(TAG, "Refreshed Token: " + refreshedToken);
-                                Log.d(TAG, "userUID: " + userUID);
-
-                                Intent userIntent = new Intent(SignInActivity.this, MainActivity.class);
-                                userIntent.putExtra(EXTRA_USER, mUsername);
-                                userIntent.putExtra(EXTRA_TOKEN, refreshedToken);
-                                userIntent.putExtra(EXTRA_UID, userUID);
-                                startActivity(userIntent);
+                                startActivity(new Intent(SignInActivity.this, MainActivity.class));
                                 finish();
                             } else {
                                 Log.e(TAG, "user not found...");

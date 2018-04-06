@@ -35,6 +35,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 
+import static com.example.zachheiner.goalapp.SignInActivity.ID;
 import static com.example.zachheiner.goalapp.SignInActivity.SHARED_FILE;
 import static com.example.zachheiner.goalapp.SignInActivity.TOKEN;
 import static com.example.zachheiner.goalapp.SignInActivity.USERNAME;
@@ -49,10 +50,6 @@ import static com.example.zachheiner.goalapp.SignInActivity.USERNAME;
  */
 public class DisplayActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
     private static final String TAG = "DisplayActivity";
-    private static final String ID = "UID";
-    public static final String EXTRA_USER = "com.example.zachheiner.goalapp.EXTRA_USER";
-    public static final String EXTRA_TOKEN = "com.example.zachheiner.goalapp.EXTRA_TOKEN";
-    public static final String EXTRA_UID = "com.example.zachheiner.goalapp.EXTRA_UID";
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
     private GoogleApiClient mGoogleApiClient;
@@ -91,10 +88,6 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
             }
         });
 
-        Intent intent = getIntent();
-        String access_token = intent.getStringExtra(MainActivity.EXTRA_TOKEN);
-        String userID = intent.getStringExtra(MainActivity.EXTRA_UID);
-
         SharedPreferences sharedPref = getSharedPreferences(SHARED_FILE, Context.MODE_PRIVATE);
         String UserId = sharedPref.getString(ID, "");
         String UserToken = sharedPref.getString(TOKEN, "");
@@ -103,22 +96,15 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
         Log.d(TAG, "the user token from shared preferences is: " + UserToken);
         Log.d(TAG, "the users username from shared preferences is: " + username);
 
-        Log.d(TAG, "Access Token: " + access_token);
-        Log.d(TAG, "User UID: " + userID);
-
-        String user = "Received intent with " + username;
-        Log.i(TAG, user);
-
-        String outputWelcomeMessage = "Welcome to GoalApp " + username;
-
         mFirebaseUser = mFirebaseAuth.getInstance().getCurrentUser();
         String currentUser = mFirebaseUser.getDisplayName();
         String verifyUID = mFirebaseUser.getUid();
         Log.d(TAG, "Current User: " + currentUser);
         Log.d(TAG, "Verify UID: " + verifyUID);
-        Log.d(TAG, "Original UID: " + userID);
+        Log.d(TAG, "Original UID: " + UserId);
 
         TextView DisplayId;
+        String outputWelcomeMessage = "Welcome to GoalApp " + username;
         DisplayId = (TextView) (findViewById(R.id.TextView_Display));
         DisplayId.setText(outputWelcomeMessage);
     }
