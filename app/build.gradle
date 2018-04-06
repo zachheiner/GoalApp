@@ -20,38 +20,41 @@ android {
 
 dependencies {
     implementation 'com.android.support:design:26.1.0'
-    compile 'com.google.firebase:firebase-core:11.8.0'
+    compile 'com.google.firebase:firebase-core:12.0.1'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-core:1.10.19'
-    compile 'com.google.android.gms:play-services-auth:11.8.0'
+    implementation 'com.firebaseui:firebase-ui-database:3.3.0'
+    implementation 'com.firebaseui:firebase-ui-auth:3.3.0'
+    implementation 'com.firebaseui:firebase-ui-database:3.3.0'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:1.10.19'
+    implementation 'com.google.android.gms:play-services-auth:12.0.1'
 
     //additional libraries
     //Realtime database
-    compile 'com.google.firebase:firebase-database:11.8.0'
+    compile 'com.google.firebase:firebase-database:12.0.1'
     //Storage
-    compile 'com.google.firebase:firebase-storage:11.8.0'
+    compile 'com.google.firebase:firebase-storage:12.0.1'
     //Crash reporting
-    compile 'com.google.firebase:firebase-crash:11.8.0'
+    compile 'com.google.firebase:firebase-crash:12.0.1'
     //Authentication
-    compile 'com.google.firebase:firebase-auth:11.8.0'
+    compile 'com.google.firebase:firebase-auth:12.0.1'
     //Cloud messaging
-    compile 'com.google.firebase:firebase-messaging:11.8.0'
+    compile 'com.google.firebase:firebase-messaging:12.0.1'
     //Remote Config
-    compile 'com.google.firebase:firebase-config:11.8.0'
+    compile 'com.google.firebase:firebase-config:12.0.1'
     //Invites and dynamic links
-    compile 'com.google.firebase:firebase-invites:11.8.0'
+    compile 'com.google.firebase:firebase-invites:12.0.1'
     //App indexing
-    compile 'com.google.firebase:firebase-appindexing:11.8.0'
+    compile 'com.google.firebase:firebase-appindexing:12.0.1'
     //Performance monitoring
-    compile 'com.google.firebase:firebase-perf:11.8.0'
+    compile 'com.google.firebase:firebase-perf:12.0.1'
 
-    compile 'com.firebaseui:firebase-ui-database:3.1.0'
+    compile 'com.firebaseui:firebase-ui-database:3.3.0'
 
 
 

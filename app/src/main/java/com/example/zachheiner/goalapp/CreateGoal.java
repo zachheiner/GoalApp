@@ -56,15 +56,16 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-private DatabaseReference mFirebaseDatabaseReference;
-private FirebaseUser mFirebaseUser;
-
 /**
  *
  * @author Heiner
  */
 public class CreateGoal extends AppCompatActivity {
     private static final String TAG = "CreateGoal";
+    private static final String ID = "UID";
+    private DatabaseReference mFirebaseDatabaseReference;
+    private FirebaseUser mFirebaseUser;
+
     /**
      *
 1     *
@@ -89,12 +90,12 @@ public class CreateGoal extends AppCompatActivity {
     }
 
     public void AddGoal(View view) {
-        log.d(TAG, "Adding info to database" );
+        Log.d(TAG, "Adding info to database" );
 
-        GoalClass goalClass = new GoalClass(UID, goalNameText.getText().toString(),
+        /*GoalClass goalClass = new GoalClass(UID, goalNameText.getText().toString(),
                 editText3.getText().toString(), editText4.getText().toString(), editText5.getText().toString());
 
         mFirebaseDatabaseReference.child(GOAL_CLASS).push().setValue(goalClass);
-
+        */
     }
 }

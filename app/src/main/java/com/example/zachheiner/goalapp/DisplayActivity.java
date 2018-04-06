@@ -1,6 +1,8 @@
 package com.example.zachheiner.goalapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +35,10 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 
+import static com.example.zachheiner.goalapp.SignInActivity.SHARED_FILE;
+import static com.example.zachheiner.goalapp.SignInActivity.TOKEN;
+import static com.example.zachheiner.goalapp.SignInActivity.USERNAME;
+
 /**
  * DisplayActivity
  * Here our Second Activity receives the information from
@@ -43,13 +49,13 @@ import java.io.IOException;
  */
 public class DisplayActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
     private static final String TAG = "DisplayActivity";
+    private static final String ID = "UID";
     public static final String EXTRA_USER = "com.example.zachheiner.goalapp.EXTRA_USER";
     public static final String EXTRA_TOKEN = "com.example.zachheiner.goalapp.EXTRA_TOKEN";
     public static final String EXTRA_UID = "com.example.zachheiner.goalapp.EXTRA_UID";
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
     private GoogleApiClient mGoogleApiClient;
-    private boolean hasAccess = true;
 
     /**
      * onCreate
@@ -86,9 +92,16 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
         });
 
         Intent intent = getIntent();
-        String username = intent.getStringExtra(MainActivity.EXTRA_USER);
         String access_token = intent.getStringExtra(MainActivity.EXTRA_TOKEN);
         String userID = intent.getStringExtra(MainActivity.EXTRA_UID);
+
+        SharedPreferences sharedPref = getSharedPreferences(SHARED_FILE, Context.MODE_PRIVATE);
+        String UserId = sharedPref.getString(ID, "");
+        String UserToken = sharedPref.getString(TOKEN, "");
+        String username = sharedPref.getString(USERNAME, "");
+        Log.d(TAG, "the user ID from shared preferences is: " + UserId);
+        Log.d(TAG, "the user token from shared preferences is: " + UserToken);
+        Log.d(TAG, "the users username from shared preferences is: " + username);
 
         Log.d(TAG, "Access Token: " + access_token);
         Log.d(TAG, "User UID: " + userID);
@@ -139,7 +152,6 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
                     public void onResult(@NonNull Status status) {
                     }
                 });
-        hasAccess = false;
         Log.d(TAG, "Sign Out Button Clicked and sign out succeeded.");
         startActivity(new Intent(this, MainActivity.class));
         finish();

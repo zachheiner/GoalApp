@@ -23,6 +23,7 @@ import android.widget.EditText;*/
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+    private static final String ID = "UID";
     public static final String EXTRA_USER = "com.example.zachheiner.goalapp.EXTRA_USER";
     public static final String EXTRA_TOKEN = "com.example.zachheiner.goalapp.EXTRA_TOKEN";
     public static final String EXTRA_UID = "com.example.zachheiner.goalapp.EXTRA_UID";
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference mUserRef = mFirebaseDatabase.getReference().child("user");
         DatabaseReference mGoalRef = mFirebaseDatabase.getReference().child("goal");

@@ -1,7 +1,9 @@
 package com.example.zachheiner.goalapp;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +30,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import static android.app.PendingIntent.getActivity;
+
 /**
  * Class SignInActivity Definition
  * Here we will sign in a user and verify that they have access.
@@ -36,6 +40,10 @@ import com.google.firebase.iid.FirebaseInstanceId;
  */
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private static final String TAG = "SignInActivity";
+    static final String SHARED_FILE = "com.example.zachheiner.goalapp.SHARED_FILE";
+    static final String ID = "UID";
+    static final String USERNAME = "USERNAME";
+    static final String TOKEN = "TOKEN";
     public static final String EXTRA_USER = "com.example.zachheiner.goalapp.EXTRA_USER";
     public static final String EXTRA_TOKEN = "com.example.zachheiner.goalapp.EXTRA_TOKEN";
     public static final String EXTRA_UID = "com.example.zachheiner.goalapp.EXTRA_UID";
@@ -157,6 +165,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         final AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mFirebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @SuppressLint("ApplySharedPref")
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
@@ -170,13 +179,30 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             if (account != null) {
-                                Log.d(TAG, "user is not null");
-                                //FirebaseUser user = mFirebaseAuth.getCurrentUser();
+                                Log.d(TAG, "user found...");
+                                mFirebaseUser = mFirebaseAuth.getCurrentUser();
                                 String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-                                String userUID = mFirebaseAuth.getUid();
+                                String userUID = mFirebaseUser.getUid();
+                                String mUsername = account.getDisplayName();
+
+                                SharedPreferences sharedUID = getSharedPreferences(SHARED_FILE, Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedUID.edit();
+                                editor.putString(ID, userUID);
+                                editor.putString(TOKEN, FirebaseInstanceId.getInstance().getToken());
+                                editor.putString(USERNAME, account.getDisplayName());
+                                editor.apply();
+
+                                SharedPreferences sharedPref = getSharedPreferences(SHARED_FILE, Context.MODE_PRIVATE);
+                                String UserId = sharedPref.getString(ID, "");
+                                String UserToken = sharedPref.getString(TOKEN, "");
+                                String UserUserName = sharedPref.getString(USERNAME, "");
+                                Log.d(TAG, "UID from shared preferences: " + UserId);
+                                Log.d(TAG, "TOKEN from shared preferences: " + UserToken);
+                                Log.d(TAG, "USERNAME from shared preferences: " + UserUserName);
+
                                 Log.d(TAG, "Refreshed Token: " + refreshedToken);
                                 Log.d(TAG, "userUID: " + userUID);
-                                String mUsername = account.getDisplayName();
+
                                 Intent userIntent = new Intent(SignInActivity.this, MainActivity.class);
                                 userIntent.putExtra(EXTRA_USER, mUsername);
                                 userIntent.putExtra(EXTRA_TOKEN, refreshedToken);
@@ -184,7 +210,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                                 startActivity(userIntent);
                                 finish();
                             } else {
-                                Log.e(TAG, "User came back as null");
+                                Log.e(TAG, "user not found...");
                             }
                         }
                     }
