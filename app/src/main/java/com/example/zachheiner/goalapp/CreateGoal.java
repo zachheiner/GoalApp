@@ -1,5 +1,6 @@
 package com.example.zachheiner.goalapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -56,6 +57,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import static com.example.zachheiner.goalapp.SignInActivity.ID;
+import static com.example.zachheiner.goalapp.SignInActivity.SHARED_FILE;
+
 /**
  *
  * @author Heiner
@@ -74,6 +78,8 @@ public class CreateGoal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_goal);
+        SharedPreferences sharedPref = getSharedPreferences(SHARED_FILE, Context.MODE_PRIVATE);
+        String UID = sharedPref.getString(ID, "");
     }
 
     /**
@@ -90,11 +96,18 @@ public class CreateGoal extends AppCompatActivity {
 
     public void AddGoal(View view) {
         Log.d(TAG, "Adding info to database" );
+        SharedPreferences sharedPref = getSharedPreferences(SHARED_FILE, Context.MODE_PRIVATE);
+        String UID = sharedPref.getString(ID, "");
 
-        /*GoalClass goalClass = new GoalClass(UID, goalNameText.getText().toString(),
-                editText3.getText().toString(), editText4.getText().toString(), editText5.getText().toString());
+        EditText goalNameText = (EditText) findViewById(R.id.goalNameText);
+        EditText goalBegin = (EditText) findViewById(R.id.goalBegin);
+        EditText goalEnd = (EditText) findViewById(R.id.goalEnd);
+        EditText journal = (EditText) findViewById(R.id.journal);
 
-        mFirebaseDatabaseReference.child(GOAL_CLASS).push().setValue(goalClass);
-        */
+        GoalClass goalClass = new GoalClass(UID, goalNameText.getText().toString(),
+                goalBegin.getText().toString(), goalEnd.getText().toString(), journal.getText().toString());
+
+        mFirebaseDatabaseReference.child("goalClass").push().setValue(goalClass);
+
     }
 }
