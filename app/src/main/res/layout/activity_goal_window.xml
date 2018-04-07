@@ -58,7 +58,7 @@
             android:fontFamily="sans-serif"
             android:hint="@string/_0"
             android:inputType="number"
-            android:labelFor="@+id/editText3"
+            android:labelFor="@+id/goalBegin"
             android:textColor="@color/colorPrimary"
             android:textColorHint="@color/colorPrimary"
             android:textStyle="bold"
@@ -78,7 +78,7 @@
             android:fontFamily="sans-serif"
             android:hint="@string/_100"
             android:inputType="number"
-            android:labelFor="@+id/editText4"
+            android:labelFor="@+id/goalEnd"
             android:textColor="@color/colorPrimary"
             android:textColorHint="@color/colorPrimary"
             android:textStyle="bold"
@@ -99,9 +99,9 @@
             android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/textView10"
-            app:layout_constraintEnd_toStartOf="@+id/editText4"
+            app:layout_constraintEnd_toStartOf="@+id/goalEnd"
             app:layout_constraintHorizontal_bias="0.47"
-            app:layout_constraintStart_toEndOf="@+id/editText3" />
+            app:layout_constraintStart_toEndOf="@+id/goalBegin" />
 
     </RelativeLayout>
 

@@ -4,20 +4,23 @@ public class GoalClass {
 
     private String UID;
     private String goalName;
-    private int begin;
-    private int end;
+    private String begin;
+    private String end;
     private String journal;
-
+    private int nBegin;
+    private int nEnd;
     public GoalClass() {
 
     }
 
-    public GoalClass(String UID, String goalName, int begin, int end, String journal){
+    public GoalClass(String UID, String goalName, String begin, String end, String journal){
         this.UID = UID;
         this.goalName = goalName;
         this.begin = begin;
         this.end = end;
         this.journal = journal;
+        nBegin = Integer.parseInt(this.begin);
+        nEnd = Integer.parseInt(this.end);
 
     }
 
@@ -25,9 +28,9 @@ public class GoalClass {
 
     public String getGoalName() {return goalName;}
 
-    public int getBegin() { return begin; }
+    public int getBegin() { return nBegin; }
 
-    public int getEnd() {return end;}
+    public int getEnd() {return nEnd;}
 
     public String getJournal() {return journal;}
 
@@ -39,12 +42,12 @@ public class GoalClass {
         this.goalName = goalName;
     }
 
-    public void setBegin(int begin) {
-        this.begin = begin;
+    public void setBegin(String begin) {
+        nBegin = Integer.parseInt(begin);
     }
 
-    public void setEnd(int end) {
-        this.end = end;
+    public void setEnd(String end) {
+        nEnd = Integer.parseInt(end);
     }
 
     public void setJournal() {

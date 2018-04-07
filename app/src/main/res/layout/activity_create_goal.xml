@@ -8,7 +8,7 @@
     tools:context="com.example.zachheiner.goalapp.CreateGoal">
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/goalEnd"
         android:layout_width="66dp"
         android:layout_height="43dp"
         android:layout_marginBottom="8dp"
@@ -19,7 +19,7 @@
         android:fontFamily="sans-serif"
         android:hint="@string/_100"
         android:inputType="number"
-        android:labelFor="@+id/editText4"
+        android:labelFor="@+id/goalEnd"
         android:textColor="@color/colorPrimary"
         android:textColorHint="@color/colorPrimary"
         android:textStyle="bold"
@@ -95,6 +95,8 @@
         android:textColor="@color/colorPrimary"
         android:textColorHint="@color/colorPrimary"
         android:textStyle="bold"
+        android:maxLines="1"
+        android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/textView8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.526"
@@ -103,7 +105,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/goalBegin"
         android:layout_width="66dp"
         android:layout_height="43dp"
         android:layout_marginBottom="8dp"
@@ -114,7 +116,7 @@
         android:fontFamily="sans-serif"
         android:hint="@string/_0"
         android:inputType="number"
-        android:labelFor="@+id/editText3"
+        android:labelFor="@+id/goalBegin"
         android:textColor="@color/colorPrimary"
         android:textColorHint="@color/colorPrimary"
         android:textStyle="bold"
@@ -135,9 +137,9 @@
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView10"
-        app:layout_constraintEnd_toStartOf="@+id/editText4"
+        app:layout_constraintEnd_toStartOf="@+id/goalEnd"
         app:layout_constraintHorizontal_bias="0.47"
-        app:layout_constraintStart_toEndOf="@+id/editText3" />
+        app:layout_constraintStart_toEndOf="@+id/goalBegin" />
 
     <TextView
         android:id="@+id/textView10"
@@ -151,13 +153,13 @@
         android:textColor="@color/colorPrimary"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/editText5"
+        app:layout_constraintBottom_toTopOf="@+id/journal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/journal"
         android:layout_width="354dp"
         android:layout_height="57dp"
         android:layout_marginBottom="100dp"
@@ -167,11 +169,12 @@
         android:ems="10"
         android:fontFamily="sans-serif"
         android:hint="@string/why"
-        android:inputType="textMultiLine"
-        android:labelFor="@+id/editText5"
+        android:labelFor="@+id/journal"
         android:textColor="@color/colorPrimary"
         android:textColorHint="@color/colorPrimary"
         android:textStyle="bold"
+        android:maxLines="1"
+        android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.571"
@@ -192,7 +195,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText5" />
+        app:layout_constraintTop_toBottomOf="@+id/journal" />
 
     <Button
         android:id="@+id/cancel_button"
@@ -212,6 +215,6 @@
         app:layout_constraintEnd_toStartOf="@+id/add_goal_button"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText5" />
+        app:layout_constraintTop_toBottomOf="@+id/journal" />
 
 </android.support.constraint.ConstraintLayout>
