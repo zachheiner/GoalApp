@@ -130,6 +130,10 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
      * @author Bingham.
      */
     public void signOut() {
+        String userUID = "";
+        String refreshedToken = "";
+        String mUsername = "";
+
         mFirebaseAuth.getInstance().signOut();
         // Google sign out
         Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
@@ -138,6 +142,24 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
                     public void onResult(@NonNull Status status) {
                     }
                 });
+
+        // setting SharedPreferences back to default.
+        SharedPreferences sharedUID = getSharedPreferences(SHARED_FILE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedUID.edit();
+        editor.putString(ID, userUID);
+        editor.putString(TOKEN, refreshedToken);
+        editor.putString(USERNAME, mUsername);
+        editor.apply();
+
+        // verify that SharedPreferences are back at default values.
+        SharedPreferences sharedPref = getSharedPreferences(SHARED_FILE, Context.MODE_PRIVATE);
+        String UserId = sharedPref.getString(ID, "");
+        String UserToken = sharedPref.getString(TOKEN, "");
+        String username = sharedPref.getString(USERNAME, "");
+        Log.d(TAG, "the user ID from shared preferences is: " + UserId);
+        Log.d(TAG, "the user token from shared preferences is: " + UserToken);
+        Log.d(TAG, "the users username from shared preferences is: " + username);
+
         Log.d(TAG, "Sign Out Button Clicked and sign out succeeded.");
         startActivity(new Intent(this, MainActivity.class));
         finish();
