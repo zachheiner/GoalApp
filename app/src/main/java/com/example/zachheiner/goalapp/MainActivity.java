@@ -13,14 +13,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-/*import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;*/
-
-
-
-
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
