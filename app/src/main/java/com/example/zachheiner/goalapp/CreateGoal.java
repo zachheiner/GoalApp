@@ -110,6 +110,9 @@ public class CreateGoal extends AppCompatActivity {
         Log.d(TAG,"back from goal class going into DB: " + goalClass.getUID() + " " + goalClass.getGoalName());
         mFirebaseDatabaseReference.child(GOAL_CLASS).push().setValue(goalClass);
 
+
+        startActivity(new Intent(this, DisplayActivity.class));
         finish();
+        }
     }
-}
+
