@@ -22,8 +22,8 @@ public class GoalClass {
         this.begin = begin;
         this.end = end;
         this.journal = journal;
-       /* nBegin = Integer.parseInt(this.begin);
-        nEnd = Integer.parseInt(this.end);*/
+        nBegin = Integer.parseInt(this.begin);
+        nEnd = Integer.parseInt(this.end);
         Log.d("goalClass","I've made it out of the non-default constructor");
     }
 
