@@ -1,5 +1,7 @@
 package com.example.zachheiner.goalapp;
 
+import android.util.Log;
+
 public class GoalClass {
 
     private String UID;
@@ -14,23 +16,24 @@ public class GoalClass {
     }
 
     public GoalClass(String UID, String goalName, String begin, String end, String journal){
+        Log.d("goalClass","I've made it into the non-default constructor");
         this.UID = UID;
         this.goalName = goalName;
         this.begin = begin;
         this.end = end;
         this.journal = journal;
-        nBegin = Integer.parseInt(this.begin);
-        nEnd = Integer.parseInt(this.end);
-
+       /* nBegin = Integer.parseInt(this.begin);
+        nEnd = Integer.parseInt(this.end);*/
+        Log.d("goalClass","I've made it out of the non-default constructor");
     }
 
     public String getUID() {return UID;}
 
     public String getGoalName() {return goalName;}
 
-    public int getBegin() { return nBegin; }
+    public double getBegin() { return nBegin; }
 
-    public int getEnd() {return nEnd;}
+    public double getEnd() {return nEnd;}
 
     public String getJournal() {return journal;}
 

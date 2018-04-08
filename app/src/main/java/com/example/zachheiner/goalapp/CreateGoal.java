@@ -65,6 +65,7 @@ import static com.example.zachheiner.goalapp.SignInActivity.SHARED_FILE;
  */
 public class CreateGoal extends AppCompatActivity {
     private static final String TAG = "CreateGoal";
+    static final String GOAL_CLASS = "goalClass";
     private DatabaseReference mFirebaseDatabaseReference;
     private FirebaseUser mFirebaseUser;
 
@@ -97,6 +98,7 @@ public class CreateGoal extends AppCompatActivity {
         Log.d(TAG, "Adding info to database" );
         SharedPreferences sharedPref = getSharedPreferences(SHARED_FILE, Context.MODE_PRIVATE);
         String UID = sharedPref.getString(ID, "");
+        mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
         EditText goalNameText = (EditText) findViewById(R.id.goalNameText);
         EditText goalBegin = (EditText) findViewById(R.id.goalBegin);
@@ -105,8 +107,9 @@ public class CreateGoal extends AppCompatActivity {
 
         GoalClass goalClass = new GoalClass(UID, goalNameText.getText().toString(),
                 goalBegin.getText().toString(), goalEnd.getText().toString(), journal.getText().toString());
+        Log.d(TAG,"back from goal class going into DB: " + goalClass.getUID() + " " + goalClass.getGoalName());
+        mFirebaseDatabaseReference.child(GOAL_CLASS).push().setValue(goalClass);
 
-        mFirebaseDatabaseReference.child("goalClass").push().setValue(goalClass);
-
+        finish();
     }
 }
