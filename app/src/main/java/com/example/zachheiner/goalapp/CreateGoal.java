@@ -108,5 +108,7 @@ public class CreateGoal extends AppCompatActivity {
 
         mFirebaseDatabaseReference.child("goalClass").push().setValue(goalClass);
 
+        startActivity(new Intent(this, DisplayActivity.class));
+        finish();
     }
 }
