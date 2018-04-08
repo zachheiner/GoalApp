@@ -121,9 +121,7 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
     finish();
     }
 
-    public void onActivityResult(){
-        setContentView(R.layout.activity_display);
-    }
+
     /**
      * signOut
      * This method will change the authentication state for the firebase user and
