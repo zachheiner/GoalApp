@@ -1,5 +1,7 @@
 package com.example.zachheiner.goalapp;
 
+import static java.lang.Double.parseDouble;
+
 public class GoalClass {
 
     private String UID;
@@ -7,20 +9,20 @@ public class GoalClass {
     private String begin;
     private String end;
     private String journal;
-    private int nBegin;
-    private int nEnd;
+    private double  nBegin;
+    private double nEnd;
     public GoalClass() {
 
     }
 
     public GoalClass(String UID, String goalName, String begin, String end, String journal){
-        this.UID = UID;
-        this.goalName = goalName;
-        this.begin = begin;
-        this.end = end;
-        this.journal = journal;
-        nBegin = Integer.parseInt(this.begin);
-        nEnd = Integer.parseInt(this.end);
+        setUID(UID);
+        setGoalName(goalName);
+        setBegin(begin);
+        setEnd(end);
+        setJournal(journal);
+        nBegin = parseDouble(this.begin);
+        nEnd = parseDouble(this.end);
 
     }
 
@@ -28,17 +30,17 @@ public class GoalClass {
 
     public String getGoalName() {return goalName;}
 
-    public int getBegin() { return nBegin; }
+    public double getBegin() { return nBegin; }
 
-    public int getEnd() {return nEnd;}
+    public double getEnd() {return nEnd;}
 
     public String getJournal() {return journal;}
 
-    public void setUID() {
+    public void setUID(String UID) {
         this.UID = UID;
     }
 
-    public void setGoalName() {
+    public void setGoalName(String goalName) {
         this.goalName = goalName;
     }
 
@@ -50,7 +52,7 @@ public class GoalClass {
         nEnd = Integer.parseInt(end);
     }
 
-    public void setJournal() {
+    public void setJournal(String journal) {
         this.journal = journal;
     }
     
