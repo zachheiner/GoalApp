@@ -35,7 +35,7 @@ public class GoalClass {
 
     public Double getBegin() { return begin; }
 
-    public Double getEnd() {return end;}
+    public Double getEnd() {return end - begin;}
 
     public Double getCurrVal() {return currVal;}
 

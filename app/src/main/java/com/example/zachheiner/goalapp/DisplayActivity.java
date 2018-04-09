@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
@@ -15,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.google.android.gms.auth.api.Auth;
@@ -128,21 +130,33 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
         myGoalQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
                 int i=0;
+                //view array to access goal list in for loop
+                int[] textViewIds = { R.id.goalName1, R.id.goalName2,R.id.goalName3,R.id.goalName4,R.id.goalName5,R.id.goalName6,R.id.goalName7 };
+                int[] goalBarIds = { R.id.goalBar1, R.id.goalBar2,R.id.goalBar3,R.id.goalBar4,R.id.goalBar5,R.id.goalBar6,R.id.goalBar7 };
+
                 for (DataSnapshot goalSnapshot : dataSnapshot.getChildren()) {
                     Log.d(TAG, "In the query");
 
                     GoalClass goalClass = goalSnapshot.getValue(GoalClass.class);
                     Log.d(TAG, "Goal name " + goalSnapshot.child("goalName").getValue().toString());
 
+
                     TextView DisplayGoal;
+                    SeekBar GoalBar = (SeekBar) findViewById(goalBarIds[i]);
+
                     String outputGoal = goalClass.getGoalName();
 
-                    //view array to access goal list in for loop
-                    int[] textViewIds = { R.id.goalName1, R.id.goalName2,R.id.goalName3,R.id.goalName4,R.id.goalName5,R.id.goalName6,R.id.goalName7 };
+                    
 
                     DisplayGoal = (TextView) findViewById(textViewIds[i++]);
                     DisplayGoal.setText(outputGoal);
+
+                    DisplayGoal.setVisibility(View.VISIBLE);
+                    GoalBar.setVisibility(View.VISIBLE);
+
+
                     Log.d(TAG, "Goal name" + goalSnapshot.child("goalName").getValue().toString());
                 }
 
