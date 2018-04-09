@@ -12,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.InputFilter;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -56,6 +57,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import org.w3c.dom.Text;
+
 import static com.example.zachheiner.goalapp.SignInActivity.ID;
 import static com.example.zachheiner.goalapp.SignInActivity.SHARED_FILE;
 
@@ -68,6 +71,14 @@ public class CreateGoal extends AppCompatActivity {
     static final String GOAL_CLASS = "goalClass";
     private DatabaseReference mFirebaseDatabaseReference;
     private FirebaseUser mFirebaseUser;
+    private static final String DEFAULT_GOAL_NAME = "Default";
+    private static final String DEFAULT_BEGIN_VALUE = "0";
+    private static final String DEFAULT_END_VALUE = "100";
+    private static final String DEFAULT_JOURNAL = "Default";
+    private String newGoalName;
+    private String newGoalBegin;
+    private String newGoalEnd;
+    private String newJournal;
 
     /**
      *
@@ -94,6 +105,15 @@ public class CreateGoal extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * AddGoal will get the goal input from the user for their goal and then validate
+     * the input to verify there are string values available. It will then make an instance
+     * of the goal class and send the new goal instance to firebase to create the new goal.
+     *
+     * @param view
+     *
+     * @author Heiner, Stark, Bingham
+     */
     public void AddGoal(View view) {
         Log.d(TAG, "Adding info to database" );
         SharedPreferences sharedPref = getSharedPreferences(SHARED_FILE, Context.MODE_PRIVATE);
@@ -105,11 +125,39 @@ public class CreateGoal extends AppCompatActivity {
         EditText goalEnd = (EditText) findViewById(R.id.goalEnd);
         EditText journal = (EditText) findViewById(R.id.journal);
 
-        GoalClass goalClass = new GoalClass(UID, goalNameText.getText().toString(),
-                goalBegin.getText().toString(), goalEnd.getText().toString(), journal.getText().toString());
+        // GoalName check
+        if (TextUtils.isEmpty(goalNameText.getText())){
+             newGoalName = DEFAULT_GOAL_NAME;
+        } else {
+            newGoalName = goalNameText.getText().toString();
+        }
+        // GoalBegin check
+        if (TextUtils.isEmpty(goalBegin.getText())) {
+            newGoalBegin = DEFAULT_BEGIN_VALUE;
+        } else {
+            newGoalBegin = goalBegin.getText().toString();
+        }
+        // GoalEnd check
+        if (TextUtils.isEmpty(goalEnd.getText())) {
+            newGoalEnd = DEFAULT_END_VALUE;
+        } else {
+            newGoalEnd = goalEnd.getText().toString();
+        }
+        // Journal check
+        if (TextUtils.isEmpty(journal.getText())) {
+            newJournal = DEFAULT_JOURNAL;
+        } else {
+            newJournal = journal.getText().toString();
+        }
+
+        Log.d(TAG, "Goal Name: " + newGoalName);
+        Log.d(TAG, "Goal Beginning number: " + newGoalBegin);
+        Log.d(TAG, "Goal Ending number: " + newGoalEnd);
+        Log.d(TAG, "Goal Journal: " + newJournal);
+
+        GoalClass goalClass = new GoalClass(UID, newGoalName, newGoalBegin, newGoalEnd, newJournal);
         Log.d(TAG,"back from goal class going into DB: " + goalClass.getUID() + " " + goalClass.getGoalName());
         mFirebaseDatabaseReference.child(GOAL_CLASS).push().setValue(goalClass);
-
 
         startActivity(new Intent(this, DisplayActivity.class));
         finish();
