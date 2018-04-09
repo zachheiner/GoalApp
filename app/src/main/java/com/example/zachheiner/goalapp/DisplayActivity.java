@@ -110,7 +110,7 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
 
         mFirebaseUser = mFirebaseAuth.getInstance().getCurrentUser();
         String currentUser = mFirebaseUser.getDisplayName();
-        String verifyUID = mFirebaseUser.getUid();
+        final String verifyUID = mFirebaseUser.getUid();
         Log.d(TAG, "Current User: " + currentUser);
         Log.d(TAG, "Verify UID: " + verifyUID);
         Log.d(TAG, "Original UID: " + UserId);
@@ -135,6 +135,8 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
                 //view array to access goal list in for loop
                 int[] textViewIds = { R.id.goalName1, R.id.goalName2,R.id.goalName3,R.id.goalName4,R.id.goalName5,R.id.goalName6,R.id.goalName7 };
                 int[] goalBarIds = { R.id.goalBar1, R.id.goalBar2,R.id.goalBar3,R.id.goalBar4,R.id.goalBar5,R.id.goalBar6,R.id.goalBar7 };
+                SeekBar GoalBar;
+                GoalBar = (SeekBar) findViewById(goalBarIds[i]);
 
                 for (DataSnapshot goalSnapshot : dataSnapshot.getChildren()) {
                     Log.d(TAG, "In the query");
@@ -144,11 +146,9 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
 
 
                     TextView DisplayGoal;
-                    SeekBar GoalBar = (SeekBar) findViewById(goalBarIds[i]);
-
-                    String outputGoal = goalClass.getGoalName();
-
+                    GoalBar = (SeekBar) findViewById(goalBarIds[i]);
                     
+                    String outputGoal = goalClass.getGoalName();
 
                     DisplayGoal = (TextView) findViewById(textViewIds[i++]);
                     DisplayGoal.setText(outputGoal);
@@ -159,6 +159,28 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
 
                     Log.d(TAG, "Goal name" + goalSnapshot.child("goalName").getValue().toString());
                 }
+
+                /**seekbar functionality
+                 * @author stark
+                 */
+
+                GoalBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                            seekBar.setProgress(progress);
+                            mFirebaseDatabaseReference.child("user").child(verifyUID).child("goalClass").child("currVal").setValue(progress);
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                });
 
             }
 
