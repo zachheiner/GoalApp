@@ -29,6 +29,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -107,7 +110,12 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
         String outputWelcomeMessage = "Welcome to GoalApp " + username;
         DisplayId = (TextView) (findViewById(R.id.TextView_Display));
         DisplayId.setText(outputWelcomeMessage);
-    }
+
+
+
+
+
+}
 
     /**
      * createGoal

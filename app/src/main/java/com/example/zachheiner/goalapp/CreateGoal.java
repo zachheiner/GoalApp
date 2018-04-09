@@ -78,6 +78,7 @@ public class CreateGoal extends AppCompatActivity {
     private String newGoalName;
     private String newGoalBegin;
     private String newGoalEnd;
+    private int    newCurrVal = 0;
     private String newJournal;
 
     /**
@@ -153,9 +154,10 @@ public class CreateGoal extends AppCompatActivity {
         Log.d(TAG, "Goal Name: " + newGoalName);
         Log.d(TAG, "Goal Beginning number: " + newGoalBegin);
         Log.d(TAG, "Goal Ending number: " + newGoalEnd);
+        Log.d(TAG, "Goal Current Value number: " + newCurrVal);
         Log.d(TAG, "Goal Journal: " + newJournal);
 
-        GoalClass goalClass = new GoalClass(UID, newGoalName, newGoalBegin, newGoalEnd, newJournal);
+        GoalClass goalClass = new GoalClass(UID, newGoalName, newGoalBegin, newGoalEnd, newCurrVal, newJournal);
         Log.d(TAG,"back from goal class going into DB: " + goalClass.getUID() + " " + goalClass.getGoalName());
         mFirebaseDatabaseReference.child(GOAL_CLASS).push().setValue(goalClass);
 
