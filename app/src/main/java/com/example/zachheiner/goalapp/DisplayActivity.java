@@ -32,6 +32,10 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -56,6 +60,8 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
     private GoogleApiClient mGoogleApiClient;
+    private DatabaseReference mFirebaseDatabaseReference;
+    static final String GOAL_CLASS = "goalClass";
 
     /**
      * onCreate
@@ -71,7 +77,8 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
-
+        mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
+        String UID;
         
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -111,11 +118,35 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
         DisplayId = (TextView) (findViewById(R.id.TextView_Display));
         DisplayId.setText(outputWelcomeMessage);
 
+        Log.d(TAG, "About to query");
+
+        Query myGoalQuery = mFirebaseDatabaseReference.child("users").child(verifyUID).child("goalClass").orderByKey().limitToFirst(7);
+        myGoalQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot goalSnapshot : dataSnapshot.getChildren()) {
+                    Log.d(TAG, "In the query");
+
+                    GoalClass goalClass = goalSnapshot.getValue(GoalClass.class);
+                    Log.d(TAG, "Goal name " + goalSnapshot.child("goalName").getValue().toString());
+
+                    TextView DisplayGoal;
+                    String outputGoal = goalClass.getGoalName();
+                    DisplayGoal = (TextView) (findViewById(R.id.goalName1));
+                    DisplayGoal.setText(outputGoal);
+                    Log.d(TAG, "Goal name" + goalSnapshot.child("goalName").getValue().toString());
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
 
-
-
-}
+    }
 
     /**
      * createGoal

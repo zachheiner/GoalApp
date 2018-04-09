@@ -72,13 +72,13 @@ public class CreateGoal extends AppCompatActivity {
     private DatabaseReference mFirebaseDatabaseReference;
     private FirebaseUser mFirebaseUser;
     private static final String DEFAULT_GOAL_NAME = "Default";
-    private static final String DEFAULT_BEGIN_VALUE = "0";
-    private static final String DEFAULT_END_VALUE = "100";
+    private static final Double DEFAULT_BEGIN_VALUE = Double.valueOf("0");
+    private static final Double DEFAULT_END_VALUE = Double.valueOf("100");
     private static final String DEFAULT_JOURNAL = "Default";
     private String newGoalName;
-    private String newGoalBegin;
-    private String newGoalEnd;
-    private int    newCurrVal = 0;
+    private Double newGoalBegin;
+    private Double newGoalEnd;
+    private Double newCurrVal;
     private String newJournal;
 
     /**
@@ -136,13 +136,13 @@ public class CreateGoal extends AppCompatActivity {
         if (TextUtils.isEmpty(goalBegin.getText())) {
             newGoalBegin = DEFAULT_BEGIN_VALUE;
         } else {
-            newGoalBegin = goalBegin.getText().toString();
+            newGoalBegin = Double.valueOf(goalBegin.getText().toString());
         }
         // GoalEnd check
         if (TextUtils.isEmpty(goalEnd.getText())) {
             newGoalEnd = DEFAULT_END_VALUE;
         } else {
-            newGoalEnd = goalEnd.getText().toString();
+            newGoalEnd = Double.valueOf(goalEnd.getText().toString());
         }
         // Journal check
         if (TextUtils.isEmpty(journal.getText())) {
@@ -159,7 +159,7 @@ public class CreateGoal extends AppCompatActivity {
 
         GoalClass goalClass = new GoalClass(UID, newGoalName, newGoalBegin, newGoalEnd, newCurrVal, newJournal);
         Log.d(TAG,"back from goal class going into DB: " + goalClass.getUID() + " " + goalClass.getGoalName());
-        mFirebaseDatabaseReference.child(GOAL_CLASS).push().setValue(goalClass);
+        mFirebaseDatabaseReference.child("users").child(UID).child(GOAL_CLASS).push().setValue(goalClass);
 
         startActivity(new Intent(this, DisplayActivity.class));
         finish();

@@ -6,25 +6,25 @@ public class GoalClass {
 
     private String UID;
     private String goalName;
-    private String begin;
-    private String end;
-    private int currVal;
+    private Double begin;
+    private Double end;
+    private Double currVal;
     private String journal;
-    private int nBegin;
-    private int nEnd;
+    private Double nBegin;
+    private Double nEnd;
     public GoalClass() {
 
     }
 
-    public GoalClass(String UID, String goalName, String begin, String end, int currVal, String journal){
+    public GoalClass(String UID, String goalName, Double begin, Double end, Double currVal, String journal){
         Log.d("goalClass","I've made it into the non-default constructor");
         this.UID = UID;
         this.goalName = goalName;
         this.begin = begin;
         this.end = end;
         this.journal = journal;
-        nBegin = Integer.parseInt(this.begin);
-        nEnd = Integer.parseInt(this.end);
+      //  nBegin = Integer.parseInt(this.begin);
+      //  nEnd = Integer.parseInt(this.end);
         this.currVal = currVal;
         Log.d("goalClass","I've made it out of the non-default constructor");
     }
@@ -33,31 +33,31 @@ public class GoalClass {
 
     public String getGoalName() {return goalName;}
 
-    public double getBegin() { return nBegin; }
+    public Double getBegin() { return begin; }
 
-    public double getEnd() {return nEnd;}
+    public Double getEnd() {return end;}
 
-    public int getCurrVal() {return currVal;}
+    public Double getCurrVal() {return currVal;}
 
     public String getJournal() {return journal;}
 
-    public void setUID() {
+    public void setUID(String UID) {
         this.UID = UID;
     }
 
-    public void setGoalName() {
+    public void setGoalName(String goalName) {
         this.goalName = goalName;
     }
 
-    public void setBegin(String begin) {
-        nBegin = Integer.parseInt(begin);
-    }
+    //public void setBegin(String begin) {
+      //  nBegin = Integer.parseInt(begin);
+    //}
 
-    public void setEnd(String end) {
-        nEnd = Integer.parseInt(end);
-    }
+    //public void setEnd(String end) {
+    //    nEnd = Integer.parseInt(end);
+    //}
 
-    public void setCurrVal(int currVal){
+    public void setCurrVal(Double currVal){
         this.currVal = currVal;
     }
 
