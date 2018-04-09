@@ -89,7 +89,8 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="42sp"
                 android:fontFamily="sans-serif"
-                android:text="TextView" />
+                android:text="@string/textview"
+                android:visibility="gone"/>
 
             <RelativeLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -102,12 +103,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:max="100"
-                    android:progress="50"
+                    android:progress="0"
                     android:progressDrawable="@drawable/progress_drawable"
                     android:thumb="@drawable/thumb_drawable"
                     android:paddingLeft="0dp"
                     android:paddingRight="0dp"
-                    android:thumbOffset="0dp" />
+                    android:thumbOffset="0dp"
+                    android:visibility="gone"/>
+                <!-- Max will need to be end - begin and progress is currVal -->
             </RelativeLayout>
 
             <TextView
@@ -117,7 +120,8 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="42sp"
                 android:fontFamily="sans-serif"
-                android:text="TextView" />
+                android:text="@string/textview"
+                android:visibility="gone"/>
 
             <RelativeLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -130,12 +134,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:max="100"
-                    android:progress="50"
+                    android:progress="0"
                     android:progressDrawable="@drawable/progress_drawable"
                     android:thumb="@drawable/thumb_drawable"
                     android:paddingLeft="0dp"
                     android:paddingRight="0dp"
-                    android:thumbOffset="0dp" />
+                    android:thumbOffset="0dp"
+                    android:visibility="gone"/>
             </RelativeLayout>
 
             <TextView
@@ -145,7 +150,8 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="42sp"
                 android:fontFamily="sans-serif"
-                android:text="TextView" />
+                android:text="@string/textview"
+                android:visibility="gone"/>
 
             <RelativeLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -158,12 +164,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:max="100"
-                    android:progress="50"
+                    android:progress="0"
                     android:progressDrawable="@drawable/progress_drawable"
                     android:thumb="@drawable/thumb_drawable"
                     android:paddingLeft="0dp"
                     android:paddingRight="0dp"
-                    android:thumbOffset="0dp" />
+                    android:thumbOffset="0dp"
+                    android:visibility="gone"/>
             </RelativeLayout>
 
             <TextView
@@ -173,7 +180,8 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="42sp"
                 android:fontFamily="sans-serif"
-                android:text="TextView" />
+                android:text="@string/textview"
+                android:visibility="gone"/>
 
             <RelativeLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -186,12 +194,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:max="100"
-                    android:progress="50"
+                    android:progress="0"
                     android:progressDrawable="@drawable/progress_drawable"
                     android:thumb="@drawable/thumb_drawable"
                     android:paddingLeft="0dp"
                     android:paddingRight="0dp"
-                    android:thumbOffset="0dp" />
+                    android:thumbOffset="0dp"
+                    android:visibility="gone"/>
             </RelativeLayout>
 
             <TextView
@@ -201,7 +210,8 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="42sp"
                 android:fontFamily="sans-serif"
-                android:text="TextView" />
+                android:text="@string/textview"
+                android:visibility="gone"/>
 
             <RelativeLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -214,12 +224,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:max="100"
-                    android:progress="50"
+                    android:progress="0"
                     android:progressDrawable="@drawable/progress_drawable"
                     android:thumb="@drawable/thumb_drawable"
                     android:paddingLeft="0dp"
                     android:paddingRight="0dp"
-                    android:thumbOffset="0dp" />
+                    android:thumbOffset="0dp"
+                    android:visibility="gone"/>
             </RelativeLayout>
 
             <TextView
@@ -229,7 +240,8 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="42sp"
                 android:fontFamily="sans-serif"
-                android:text="TextView" />
+                android:text="@string/textview"
+                android:visibility="gone"/>
 
             <RelativeLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -242,12 +254,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:max="100"
-                    android:progress="50"
+                    android:progress="0"
                     android:progressDrawable="@drawable/progress_drawable"
                     android:thumb="@drawable/thumb_drawable"
                     android:paddingLeft="0dp"
                     android:paddingRight="0dp"
-                    android:thumbOffset="0dp" />
+                    android:thumbOffset="0dp"
+                    android:visibility="gone"/>
             </RelativeLayout>
 
             <TextView
@@ -257,7 +270,8 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="42sp"
                 android:fontFamily="sans-serif"
-                android:text="TextView" />
+                android:text="@string/textview"
+                android:visibility="gone"/>
 
             <RelativeLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -270,12 +284,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:max="100"
-                    android:progress="50"
+                    android:progress="0"
                     android:progressDrawable="@drawable/progress_drawable"
                     android:thumb="@drawable/thumb_drawable"
                     android:paddingLeft="0dp"
                     android:paddingRight="0dp"
-                    android:thumbOffset="0dp" />
+                    android:thumbOffset="0dp"
+                    android:visibility="gone"/>
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
