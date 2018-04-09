@@ -120,10 +120,15 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
 
         Log.d(TAG, "About to query");
 
+
+
+
+
         Query myGoalQuery = mFirebaseDatabaseReference.child("users").child(verifyUID).child("goalClass").orderByKey().limitToFirst(7);
         myGoalQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                int i=0;
                 for (DataSnapshot goalSnapshot : dataSnapshot.getChildren()) {
                     Log.d(TAG, "In the query");
 
@@ -132,7 +137,11 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
 
                     TextView DisplayGoal;
                     String outputGoal = goalClass.getGoalName();
-                    DisplayGoal = (TextView) (findViewById(R.id.goalName1));
+
+                    //view array to access goal list in for loop
+                    int[] textViewIds = { R.id.goalName1, R.id.goalName2,R.id.goalName3,R.id.goalName4,R.id.goalName5,R.id.goalName6,R.id.goalName7 };
+
+                    DisplayGoal = (TextView) findViewById(textViewIds[i++]);
                     DisplayGoal.setText(outputGoal);
                     Log.d(TAG, "Goal name" + goalSnapshot.child("goalName").getValue().toString());
                 }
