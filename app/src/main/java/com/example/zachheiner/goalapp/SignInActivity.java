@@ -228,6 +228,11 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     /**
+     * onConnectionFailed
+     *
+     * We have not set this up yet but it will handle the case when a user is not able
+     * to authenticate with Firebase. Currently this is done within the google authentication
+     * and just shows a toast stating that the Login failed.
      *
      * @param connectionResult
      */
@@ -236,6 +241,14 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
+    /**
+     * onStart
+     *
+     * this method we initialize our variables and set up the signInButton then
+     * we create the GoogleSignInOptions object and GoogleApiClient builder to
+     * create a GoogleSignInClient. this is all called in the onCreate method.
+     *
+     */
     @Override
     public void onStart() {
         super.onStart();
@@ -263,12 +276,28 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
+    /**
+     * onPause
+     *
+     * currently not set up but is handled within shared preferences. Eventually
+     * this will ensure that a user returns to the activity from which they left.
+     * And stays logged in.
+     *
+     */
     @Override
     public void onPause() {
         super.onPause();
 
     }
 
+    /**
+     * onResume
+     *
+     * currently not set up but is currently being handled by shared preferences. Eventually
+     * this will return the user to whatever activity we would like or just login the current
+     * user that may not have been logged out.
+     *
+     */
     @Override
     public void onResume() {
         super.onResume();

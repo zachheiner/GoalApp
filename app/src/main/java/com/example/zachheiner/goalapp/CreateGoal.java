@@ -63,6 +63,10 @@ import static com.example.zachheiner.goalapp.SignInActivity.ID;
 import static com.example.zachheiner.goalapp.SignInActivity.SHARED_FILE;
 
 /**
+ * CreateGoal
+ *
+ * this class will allow us to create a goal and then send that goal to
+ * Firebase for storage.
  *
  * @author Heiner
  */
@@ -82,8 +86,12 @@ public class CreateGoal extends AppCompatActivity {
     private String newJournal;
 
     /**
+     * onCreate
      *
-1     *
+     * This method will grab the user UID from shared preferences so that
+     * we can authenticate and add the goal to the correct user in within
+     * Firebase.
+     *
      * @author Heiner
      */
     @Override
@@ -95,6 +103,9 @@ public class CreateGoal extends AppCompatActivity {
     }
 
     /**
+     * Cancel
+     *
+     * this method will cancel the goal and return to Display.
      *
      * @param view
      *
@@ -116,16 +127,21 @@ public class CreateGoal extends AppCompatActivity {
      * @author Heiner, Stark, Bingham
      */
     public void AddGoal(View view) {
+        //Grabbing UID from the shared preferences and setting up database reference.
         Log.d(TAG, "Adding info to database" );
         SharedPreferences sharedPref = getSharedPreferences(SHARED_FILE, Context.MODE_PRIVATE);
         String UID = sharedPref.getString(ID, "");
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
+        // grabbing variables from the xml.
         EditText goalNameText = (EditText) findViewById(R.id.goalNameText);
         EditText goalBegin = (EditText) findViewById(R.id.goalBegin);
         EditText goalEnd = (EditText) findViewById(R.id.goalEnd);
         EditText journal = (EditText) findViewById(R.id.journal);
 
+        /*
+        * verify that xml fields are not empty and if they are it will set the default value.
+        */
         // GoalName check
         if (TextUtils.isEmpty(goalNameText.getText())){
              newGoalName = DEFAULT_GOAL_NAME;
@@ -151,16 +167,19 @@ public class CreateGoal extends AppCompatActivity {
             newJournal = journal.getText().toString();
         }
 
+        // logs to verify data being pulled from the xml file.
         Log.d(TAG, "Goal Name: " + newGoalName);
         Log.d(TAG, "Goal Beginning number: " + newGoalBegin);
         Log.d(TAG, "Goal Ending number: " + newGoalEnd);
         Log.d(TAG, "Goal Current Value number: " + newCurrVal);
         Log.d(TAG, "Goal Journal: " + newJournal);
 
+        // creating goal and logging the creation of it and passing it to database.
         GoalClass goalClass = new GoalClass(UID, newGoalName, newGoalBegin, newGoalEnd, newCurrVal, newJournal);
         Log.d(TAG,"back from goal class going into DB: " + goalClass.getUID() + " " + goalClass.getGoalName());
         mFirebaseDatabaseReference.child("users").child(UID).child(GOAL_CLASS).push().setValue(goalClass);
 
+        // returning to  the Display Activity for GoalDisplay.
         startActivity(new Intent(this, DisplayActivity.class));
         finish();
         }
