@@ -125,7 +125,10 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
 
 
 
-
+    /*
+    * this method will allow us to show goals that exist within the firebase database.  And allow the
+    * user to update their progress for each goal.
+     */
         Query myGoalQuery = mFirebaseDatabaseReference.child("users").child(verifyUID).child("goalClass").orderByKey().limitToFirst(7);
         myGoalQuery.addValueEventListener(new ValueEventListener() {
             @Override
@@ -142,12 +145,11 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
                     Log.d(TAG, "In the query");
 
                     GoalClass goalClass = goalSnapshot.getValue(GoalClass.class);
-                    Log.d(TAG, "Goal name " + goalSnapshot.child("goalName").getValue().toString());
+                    Log.d(TAG, "Goal name " + goalClass.getGoalName());
 
 
                     TextView DisplayGoal;
                     GoalBar = (SeekBar) findViewById(goalBarIds[i]);
-                    
                     String outputGoal = goalClass.getGoalName();
 
                     DisplayGoal = (TextView) findViewById(textViewIds[i++]);
@@ -157,7 +159,7 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
                     GoalBar.setVisibility(View.VISIBLE);
 
 
-                    Log.d(TAG, "Goal name" + goalSnapshot.child("goalName").getValue().toString());
+                    Log.d(TAG, "Goal name" + goalClass.getGoalName());
                 }
 
                 /**seekbar functionality
@@ -167,8 +169,10 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
                 GoalBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                            seekBar.setProgress(progress);
-                            mFirebaseDatabaseReference.child("user").child(verifyUID).child("goalClass").child("currVal").setValue(progress);
+
+                        seekBar.setProgress(progress);
+                        mFirebaseDatabaseReference.child("users").child(verifyUID).child("goalClass").child("currVal").setValue(progress);
+
                     }
 
                     @Override
@@ -196,12 +200,14 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
     /**
      * createGoal
      *
+     * this method will take us to the createGoal class and allow for a goal to be
+     * created and sent to firebase for storage.
+     *
      * @param view
      * @author Heiner
      */
     public void createGoal(View view){
-    Intent createNewGoal = new Intent(this, CreateGoal.class);
-    startActivity(createNewGoal);
+    startActivity(new Intent(this, CreateGoal.class));
     finish();
     }
 
@@ -250,6 +256,15 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
         finish();
     }
 
+    /**
+     * onConnectionFailed
+     *
+     * We have not set this up yet but it will handle the case when a user is not able
+     * to authenticate with Firebase. Currently this is done within the SignInActivity
+     * and just shows a toast stating that the Login failed.
+     *
+     * @param connectionResult
+     */
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
