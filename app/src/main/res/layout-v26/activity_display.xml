@@ -8,6 +8,8 @@
     android:orientation="vertical"
     tools:context="com.example.zachheiner.goalapp.DisplayActivity">
 
+    <!--This is the xml for the button that adds the goal. It send yous to the create goal activity
+    when clicked.-->
     <ImageButton
         android:id="@+id/button_addGoal"
         android:layout_width="39dp"
@@ -28,6 +30,7 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@android:drawable/ic_input_add" />
 
+    <!-- This is the text area that will take the users name and add it to the welcome message-->
     <TextView
         android:id="@+id/TextView_Display"
         android:layout_width="wrap_content"
@@ -45,6 +48,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- This is the button that will log out the user.-->
     <Button
         android:id="@+id/sign_out_button"
         android:layout_width="wrap_content"
@@ -64,6 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/TextView_Display"
         app:layout_constraintVertical_bias="0.957" />
 
+    <!-- This is the window that allows the goals to be scrolled up and down-->
     <ScrollView
         android:layout_width="372dp"
         android:layout_height="424dp"
@@ -82,6 +87,9 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!--With in the Scrollview there are 7 disappearing sections that contain a text view
+             which grabs the name and then it also has a scroll bar attached to the same
+             information-->
             <TextView
                 android:id="@+id/goalName1"
                 android:layout_width="match_parent"

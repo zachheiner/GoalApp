@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     tools:context="com.example.zachheiner.goalapp.CreateGoal">
-
+    <!-- These are the different text views in which the user can enter information.-->
+    <!-- This is the edit text for the goal end parameter-->
     <EditText
         android:id="@+id/goalEnd"
         android:layout_width="66dp"
@@ -26,7 +27,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textView10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
+    <!-- This is the textview asking for the start and end values -->
     <TextView
         android:id="@+id/textView8"
         android:layout_width="356dp"
@@ -42,7 +43,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textView9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
+    <!-- This is the textview telling the user to set a goal -->
     <TextView
         android:id="@+id/textView5"
         android:layout_width="339dp"
@@ -62,7 +63,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.615" />
-
+    <!-- This is the textview asking for the goal name -->
     <TextView
         android:id="@+id/textView6"
         android:layout_width="356dp"
@@ -78,7 +79,7 @@
         app:layout_constraintBottom_toTopOf="@+id/goalNameText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
+    <!-- This is the edittext asking for the actual goal -->
     <EditText
         android:id="@+id/goalNameText"
         android:layout_width="349dp"
@@ -103,7 +104,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
-
+    <!-- This is the edittext asking for the beginning value -->
     <EditText
         android:id="@+id/goalBegin"
         android:layout_width="66dp"
@@ -124,6 +125,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
+    <!-- This is the textview for the word to -->
     <TextView
         android:id="@+id/textView9"
         android:layout_width="44dp"
@@ -141,6 +143,7 @@
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toEndOf="@+id/goalBegin" />
 
+    <!-- This is the textview for the why behind the goal -->
     <TextView
         android:id="@+id/textView10"
         android:layout_width="353dp"
@@ -158,6 +161,7 @@
         app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <!-- This is the edittext asking for the why behind the goal -->
     <EditText
         android:id="@+id/journal"
         android:layout_width="354dp"

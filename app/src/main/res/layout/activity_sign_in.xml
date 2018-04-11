@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     tools:context="com.example.zachheiner.goalapp.SignInActivity">
-
+    <!-- This is the textview for the main goalapp welcome-->
     <TextView
         android:id="@+id/textView3"
         android:layout_width="290dp"
@@ -24,7 +24,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:textAlignment="center" />
-
+    <!-- this is the sign in button that was imported from google -->
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button"
         android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent" />
-
+    <!-- this is the sign in textView -->
     <TextView
         android:id="@+id/textView4"
         android:layout_width="172dp"

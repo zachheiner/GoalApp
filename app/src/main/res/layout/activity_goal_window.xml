@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.zachheiner.goalapp.GoalWindow">
-
+    <!-- This Xml was not completed but it was supposed to be the activity where the user would be
+    able to access and edit individual goals as well as keep a progress version.-->
     <TextView
         android:id="@+id/GoalName"
         android:layout_width="wrap_content"

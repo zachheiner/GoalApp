@@ -248,6 +248,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
      * we create the GoogleSignInOptions object and GoogleApiClient builder to
      * create a GoogleSignInClient. this is all called in the onCreate method.
      *
+     * @Author Bingham
      */
     @Override
     public void onStart() {
