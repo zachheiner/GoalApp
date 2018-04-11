@@ -236,6 +236,12 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
+    /**
+     * OnStart
+     * @Author Bingham
+     *
+     * Sets up all of the user interface and grabs the google user information that is needed
+     */
     @Override
     public void onStart() {
         super.onStart();

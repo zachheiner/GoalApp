@@ -8,7 +8,7 @@
     android:background="@color/colorBackground"
     tools:context="com.example.zachheiner.goalapp.MainActivity">
 
-
+    <!-- this is a splash screen that has the name of the app and a catchphrase-->
     <TextView
         android:id="@+id/textView"
         android:layout_width="291dp"

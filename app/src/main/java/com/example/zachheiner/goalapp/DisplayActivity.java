@@ -168,7 +168,7 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         seekBar.setProgress(progress);
-                        mFirebaseDatabaseReference.child("user").child(verifyUID).child("goalClass").child("currVal").setValue(progress);
+                        mFirebaseDatabaseReference.child("users").child(verifyUID).child("goalClass").child("currVal").setValue(progress);
                     }
 
                     @Override
