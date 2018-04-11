@@ -12,13 +12,15 @@ public class GoalClass {
     private String journal;
     private Double nBegin;
     private Double nEnd;
+    private String goalKey;
     public GoalClass() {
 
     }
 
-    public GoalClass(String UID, String goalName, Double begin, Double end, Double currVal, String journal){
+    public GoalClass(String UID, String goalKey, String goalName, Double begin, Double end, Double currVal, String journal){
         Log.d("goalClass","I've made it into the non-default constructor");
         this.UID = UID;
+        this.goalKey = goalKey;
         this.goalName = goalName;
         this.begin = begin;
         this.end = end;
@@ -31,6 +33,8 @@ public class GoalClass {
 
     public String getUID() {return UID;}
 
+    public String getGoalKey() {return goalKey; }
+
     public String getGoalName() {return goalName;}
 
     public Double getBegin() { return begin; }
@@ -40,6 +44,10 @@ public class GoalClass {
     public Double getCurrVal() {return currVal;}
 
     public String getJournal() {return journal;}
+
+    public void setGoalKey(String goalKey) {
+        this.goalKey = goalKey;
+    }
 
     public void setUID(String UID) {
         this.UID = UID;

@@ -64,6 +64,7 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
     private GoogleApiClient mGoogleApiClient;
     private DatabaseReference mFirebaseDatabaseReference;
     static final String GOAL_CLASS = "goalClass";
+    GoalClass[] goalClassArray= new GoalClass[7];
 
     /**
      * onCreate
@@ -141,14 +142,16 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
                 for (DataSnapshot goalSnapshot : dataSnapshot.getChildren()) {
                     Log.d(TAG, "In the query");
 
-                    GoalClass goalClass = goalSnapshot.getValue(GoalClass.class);
+                    goalClassArray[i] = goalSnapshot.getValue(GoalClass.class);
                     Log.d(TAG, "Goal name " + goalSnapshot.child("goalName").getValue().toString());
 
+                    //String goalKey = goalSnapshot.getKey();
+                   // mFirebaseDatabaseReference.child("users").child(verifyUID).child("goalClass").child("goalKey").setValue(goalKey);
 
                     TextView DisplayGoal;
                     GoalBar = (SeekBar) findViewById(goalBarIds[i]);
-                    
-                    String outputGoal = goalClass.getGoalName();
+
+                    String outputGoal = goalClassArray[i].getGoalName();
 
                     DisplayGoal = (TextView) findViewById(textViewIds[i++]);
                     DisplayGoal.setText(outputGoal);
@@ -167,8 +170,8 @@ public class DisplayActivity extends AppCompatActivity implements GoogleApiClien
                 GoalBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                            seekBar.setProgress(progress);
-                            mFirebaseDatabaseReference.child("user").child(verifyUID).child("goalClass").child("currVal").setValue(progress);
+                           // seekBar.setProgress(progress);
+                           // mFirebaseDatabaseReference.child("user").child(verifyUID).child("goalClass").child("currVal").setValue(progress);
                     }
 
                     @Override
